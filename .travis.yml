@@ -7,4 +7,3 @@ node_js:
 
 before_script:
   - npm install -g grunt
-  - npm postinstall
