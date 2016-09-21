@@ -7,5 +7,3 @@ script:
 before_script:
   - npm install
   - npm install -g grunt
-services:
-  - mongodb
