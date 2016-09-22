@@ -1,0 +1,9 @@
+language: node_js
+node_js:
+  - "node"
+script:
+  - npm test
+
+before_script:
+  - npm install
+  - npm install -g grunt
