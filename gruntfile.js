@@ -61,10 +61,17 @@ module.exports = function(grunt) {
             }
         },
         mochaTest: {
-            options: {
-                reporter: 'spec'
+            coverage: {
+                options: {
+                    coveralls: true
+                }
             },
-            src: ['test/**/*.js']
+            test:{
+                options: {
+                    reporter: 'spec'
+                },
+                src: ['test/**/*.js']
+            }
         },
         sass: {
             dist: {
