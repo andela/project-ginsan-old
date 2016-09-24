@@ -60,7 +60,7 @@ module.exports = function(grunt) {
                 logConcurrentOutput: true
             }
         },
-        mocha_istanbul: {  
+        mochaIstanbul: {  
             coveralls: {
                 src: 'test/**/*.js', // the folder, not the files
                 options: {
@@ -91,6 +91,7 @@ module.exports = function(grunt) {
         },
     });
 
+    //
     grunt.event.on('coverage', require('coveralls').handleInput);
 
     //Load NPM tasks 
@@ -109,7 +110,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['jshint', 'concurrent', 'sass']);
 
     //Test task.
-    grunt.registerTask('test', ['mocha_istanbul']);
+    grunt.registerTask('test', ['mochaIstanbul']);
 
     //Bower task.
     grunt.registerTask('install', ['bower']);
