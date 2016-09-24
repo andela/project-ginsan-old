@@ -56,7 +56,6 @@
     "grunt-contrib-jshint": "~0.6.4",
     "grunt-contrib-sass": "~0.5.0",
     "grunt-contrib-watch": "~0.5.3",
-    "grunt-mocha-babel-istanbul": "^2.5.0",
     "grunt-mocha-cov": "^0.4.0",
     "grunt-mocha-istanbul": "^5.0.2",
     "grunt-mocha-test": "~0.7.0",
