@@ -61,15 +61,11 @@ module.exports = function(grunt) {
             }
         },
         mocha_istanbul: {  
-            test: {
+            coveralls: {
+                src: 'test/**/*.js', // the folder, not the files
                 options: {
-                reporter: 'spec',
-                captureFile: 'results.txt', // Optionally capture the reporter output to a file 
-                quiet: false, // Optionally suppress output to standard out (defaults to false) 
-                clearRequireCache: false, // Optionally clear the require cache before running tests (defaults to false) 
-                noFail: false // Optionally set to not fail on failed tests (will still fail on other errors) 
-                },
-                src: ['test/**/*.js']
+                    coverage:true
+                }
             }
         },
         sass: {
@@ -94,6 +90,8 @@ module.exports = function(grunt) {
             }
         },
     });
+
+    grunt.event.on('coverage', require('coveralls').handleInput);
 
     //Load NPM tasks 
     grunt.loadNpmTasks('grunt-contrib-watch');
