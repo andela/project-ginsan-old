@@ -1,9 +1,13 @@
+env:
+- HOME=desktop
+
 language: node_js
+
 node_js:
   - "6.6.0"
 
 script:
-  - sudo npm test
+  - npm test
 
 services:
   - mongodb
