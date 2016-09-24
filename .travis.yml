@@ -15,8 +15,3 @@ services:
 before_script:
   - npm install
   - npm install -g grunt
-
-# Send coverage data to Coveralls
-after_script:
-  - sleep 15
-  - cat ./coverage/**/*.info | ./node_modules/coveralls/bin/coveralls.js
