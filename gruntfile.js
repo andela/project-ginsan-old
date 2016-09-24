@@ -61,7 +61,6 @@ module.exports = function(grunt) {
             }
         },
         mocha_istanbul: {  
-           
             test: {
                 options: {
                 reporter: 'spec',
