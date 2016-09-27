@@ -3,4 +3,9 @@ public/lib
 .sass-cache/
 .DS_store
 c4h_keys.txt
+<<<<<<< HEAD
 .env
+=======
+.idea/
+
+>>>>>>> 7b1a1f8ef42141677b28ff5d097ff8e4e8b9578c
