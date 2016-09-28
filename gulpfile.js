@@ -50,13 +50,13 @@ gulp.task('clean-css',function(){
 });
 
 gulp.task('pre-test',function(){
-  return gulp.src(['test/**/*.js'],{read: false})
+  return gulp.src(['test/**/*.js'])
   .pipe(istanbul())
   .pipe(istanbul.hookRequire());
 });
 
 gulp.task('test',['pre-test'],function(){
-  return gulp.src(['test/**/*.js'],{read: false})
+  return gulp.src(['test/**/*.js'])
   .pipe(mocha({
     reporter: 'spec'
   }))
