@@ -10,11 +10,12 @@ var sourcemaps = require('gulp-sourcemaps');
 var mocha = require('gulp-mocha');
 var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
-// var reload = browserSync.reload;
+var fs = require('fs');
+var reload = browserSync.reload;
 
 
 gulp.task('default',function(){
-  gulpSequence('bower','serve');
+  gulpSequence(['lint','bower'],'sass','serve');
 });
 
 gulp.task('bower', function() {
@@ -26,15 +27,25 @@ gulp.task('lint',function(){
   var jsFilter = filter(['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']);
   return gulp.src('./**/*.js')
   .pipe(jsFilter)
-  .pipe(jshint);
+  .pipe(jshint());
 });
 
-gulp.task('sass',function(){
+gulp.task('sass',['clean-css'],function(){
   return gulp.src('public/css/common.scss')
   .pipe(sourcemaps.init())
   .pipe(sass().on('error',sass.logError))
   .pipe(sourcemaps.write())
-  .pipe(gulp.dest('public/css/common.css'));
+  .pipe(gulp.dest('public/css/'));
+});
+
+gulp.task('clean-css',function(){
+  try{
+    fs.unlinkSync('public/css/common.css');
+  }
+  catch(err){
+    //no file exists continue
+  }
+
 });
 
 gulp.task('test',function(){
@@ -51,7 +62,10 @@ gulp.task('nodemon',function(){
     tasks: ['sass','lint']
   });
 
-  server.on('restart',function(){
+  server.on('start',function(){
+    console.log('Server started');
+  })
+  .on('restart',function(){
     console.log('Server restarted');
   })
   .on('crash',function(){
@@ -63,7 +77,22 @@ gulp.task('nodemon',function(){
 
 gulp.task('serve',['nodemon'],function(){
   browserSync({
-    proxy: 'localhost:3000',
-    port: 5000
+    proxy: 'localhost:3001',
+    port: 5000,
+    ui: {
+      port: 5001
+    }
   });
+});
+
+//finish lint task before reloading
+gulp.task('on-js-change',['lint'],function(done){
+  reload();
+  done();
+});
+
+gulp.task('watch-changes',function(){
+  gulp.watch(['app/views/**','public/views/**','public/css/**'], reload);
+  gulp.watch('public/css/common.scss',['sass']);
+  gulp.watch(['public/js/**', 'app/**/*.js'],['on-js-change']);
 });
