@@ -1,9 +1,11 @@
 'use strict';
 var gulp = require('gulp');
 // var exec = require('child_process').exec;
-var browserSync = require('browser-sync').create();
 var gulpSequence = require('run-sequence');
 var bower = require('gulp-bower');
+var filter = require('gulp-filter');
+var jshint = require('gulp-jshint');
+
 
 gulp.task('default',function(){
   gulpSequence('bower','serve');
@@ -14,4 +16,9 @@ gulp.task('bower', function() {
     .pipe(gulp.dest('./public/lib'));
 });
 
-gulp.task('serve')
+gulp.tast('lint',function(){
+  var jsFilter = filter(['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']);
+  gulp.src('./**/*.js')
+  .pipe(jsFilter)
+  .pipe(jshint);
+});
