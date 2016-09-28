@@ -10,6 +10,7 @@ var sourcemaps = require('gulp-sourcemaps');
 var mocha = require('gulp-mocha');
 var browserSync = require('browser-sync');
 var nodemon = require('gulp-nodemon');
+var istanbul = require('gulp-istanbul');
 var fs = require('fs');
 var reload = browserSync.reload;
 
@@ -48,18 +49,21 @@ gulp.task('clean-css',function(){
 
 });
 
-gulp.task('test',function(){
+gulp.task('pre-test',function(){
+  return gulp.src(['test/**/*.js'],{read: false})
+  .pipe(istanbul())
+  .pipe(istanbul.hookRequire());
+});
+
+gulp.task('test',['pre-test'],function(){
   return gulp.src(['test/**/*.js'],{read: false})
   .pipe(mocha({
     reporter: 'spec'
   }))
-  .once('error',function(){
-    process.exit(1);
-  })
-  .once('end',function(){
-    process.exit(1);
-  });
+  .pipe(istanbul.writeReports());
 });
+
+
 
 gulp.task('nodemon',function(){
   var server = nodemon({
