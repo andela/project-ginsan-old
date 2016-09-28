@@ -15,10 +15,10 @@ var reload = browserSync.reload;
 
 
 gulp.task('default',function(){
-  gulpSequence(['lint','bower'],'sass','serve');
+  gulpSequence(['lint','install'],'sass','serve','watch-changes');
 });
 
-gulp.task('bower', function() {
+gulp.task('install', function() {
   return bower('./bower_components')
     .pipe(gulp.dest('./public/lib'));
 });
