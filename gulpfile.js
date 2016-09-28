@@ -8,6 +8,9 @@ var jshint = require('gulp-jshint');
 var sass = require('gulp-sass');
 var sourcemaps = require('gulp-sourcemaps');
 var mocha = require('gulp-mocha');
+var browserSync = require('browser-sync');
+var nodemon = require('gulp-nodemon');
+// var reload = browserSync.reload;
 
 
 gulp.task('default',function(){
@@ -39,4 +42,28 @@ gulp.task('test',function(){
   .pipe(mocha({
     reporter: 'spec'
   }));
+});
+
+gulp.task('nodemon',function(){
+  var server = nodemon({
+    script: 'server.js',
+    ignore: ['README.md', 'node_modules/**', '.DS_Store'],
+    tasks: ['sass','lint']
+  });
+
+  server.on('restart',function(){
+    console.log('Server restarted');
+  })
+  .on('crash',function(){
+    console.log('App crashed');
+    //restart server after 10 seconds interval
+    server.emit('restart',10);
+  });
+});
+
+gulp.task('serve',['nodemon'],function(){
+  browserSync({
+    proxy: 'localhost:3000',
+    port: 5000
+  });
 });
