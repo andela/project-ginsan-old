@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/andela/project-ginsan.svg?branch=ch-add-travis-ci-badge-%23130341263)](https://travis-ci.org/andela/project-ginsan)
+[![Coverage Status](https://coveralls.io/repos/github/andela/project-ginsan/badge.svg?branch=chore%2Fcoverall-integration-130341271)](https://coveralls.io/github/andela/project-ginsan?branch=chore%2Fcoverall-integration-130341271)
 
 Cards for Humanity - [http://cfh.io](http://cfh.io)
 ===========
