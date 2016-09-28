@@ -37,6 +37,7 @@
     "gulp-mocha": "^3.0.1",
     "gulp-nodemon": "^2.2.0",
     "gulp-sass": "^2.3.2",
+    "gulp-sourcemaps": "^1.6.0",
     "jade": "~0.35.0",
     "mean-logger": "~0.0.1",
     "mongoose": "~3.6.20",
