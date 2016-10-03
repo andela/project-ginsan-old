@@ -5,5 +5,5 @@ var localDb = 'mongodb://localhost:27017/cfh';
 module.exports = {
 	root: rootPath,
 	port: process.env.PORT || 3000,
-    db: process.env.MONGOHQ_URL || localDb
+    db: process.env.DB
 };
