@@ -106,7 +106,7 @@ UserSchema.methods = {
 
         return jwt.sign({
             _id: this._id
-        }, "simpletouch", {
+        }, process.env.SECRET_KEY, {
             expiresIn: 10080
         }); // DO NOT KEEP YOUR SECRET IN THE CODE!
     },
