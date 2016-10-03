@@ -48,6 +48,8 @@ app.use(function(req, res, next){
     next();
 });
 
+
+var apiRoutes = express.Router();
 //express settings
 require('./config/express')(app, passport, mongoose);
 
