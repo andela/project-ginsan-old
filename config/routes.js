@@ -3,7 +3,7 @@ var async = require('async');
 var eJwt = require("express-jwt");
 
 var jwtAuth = eJwt({
-    secret: process.env.SECRET_KEY || "simpletouch",
+    secret: process.env.SECRET_KEY,
     userProperty: 'payload'
 });
 
@@ -28,8 +28,6 @@ module.exports = function (app, passport, auth) {
     app.post('/users/avatars', users.avatars);
 
     app.post("/api/auth/signup", users.create);
-
-
 
     // Donation Routes
     app.post('/donations', users.addDonation);
