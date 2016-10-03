@@ -64,62 +64,7 @@ exports.getAllUser = function (req, res, next) {
   });
 };
 
-exports.authenticate = function (req, res, next) {
-  User.findOne({ email: req.body.email }, function (err, user) {
-    if (err) throw err;
-    if (!user) {
-      res.send({ success: false, message: "Authentication failed. User not found" });
-    } else {
-      var comparePassword = user.authenticate(req.body.password);
-      if (comparePassword) {
-        var encodedToken = jwt.sign({ _id: user.id }, "simpletouch", {
-          expiresIn: 10080 //in seconds
-        });
-        res.json({ success: true, token: encodedToken });
-      } else {
-        res.json({ success: false, message: "Authenication failed." });
-      }
-    }
-  });
-};
 
-exports.login = function (req, res) {
-
-  passport.authenticate('local', function (err, user, info) {
-    var token;
-    if (err) {
-      res.status(404).json(err);
-      return;
-    }
-    if (user) {
-      token = user.generateJwt();
-      res.status(200);
-      res.json({
-        success:true,
-        message:"Successfully LoggedIn",
-        token: token
-      });
-    } else {
-
-      res.status(401).json(info);
-    }
-  })(req, res);
-
-};
-
-exports.checkAuth = function (req, res, next) {
-  var token = req.headers.authorization;
-
-  if (token) {
-    var decodedToken = jwt.verify(token, "simpletouch");
-
-    req.decoded = decoded;
-    next();
-
-  } else {
-    return res.status(403).send({ success: false, message: "No token provided" });
-  }
-};
 
 /** 
  * Check avatar - Confirm if the user who logged in via passport

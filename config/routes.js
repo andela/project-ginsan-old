@@ -17,11 +17,6 @@ module.exports = function (app, passport, auth) {
     app.get('/chooseavatars', users.checkAvatar);
     app.get('/signout', users.signout);
 
-    //Setting up the users api
-    app.post('/users/avatars', users.avatars);
-
-    app.post("/api/auth/signup", users.create);
-
     app.use(function (err, req, res, next) {
         if (err.name === 'UnauthorizedError') {
             res.status(401);
@@ -29,10 +24,12 @@ module.exports = function (app, passport, auth) {
         }
     });
 
-    app.post("/api/auth/login", users.login);
+    //Setting up the users api
+    app.post('/users/avatars', users.avatars);
+
+    app.post("/api/auth/signup", users.create);
 
 
-    app.get("/members", jwtAuth, users.getAllUser);
 
     // Donation Routes
     app.post('/donations', users.addDonation);
