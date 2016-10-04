@@ -3,10 +3,11 @@ var mongoose = require('mongoose'),
     TwitterStrategy = require('passport-twitter').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GitHubStrategy = require('passport-github').Strategy,
+    JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     User = mongoose.model('User'),
     config = require('./config');
-
 
 module.exports = function(passport) {
     //Serialize sessions
@@ -25,12 +26,14 @@ module.exports = function(passport) {
         });
     });
 
+
     //Use local strategy
     passport.use(new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
         },
         function(email, password, done) {
+            console.log(email + ' ' + password);
             User.findOne({
                 email: email
             }, function(err, user) {
@@ -53,6 +56,7 @@ module.exports = function(passport) {
             });
         }
     ));
+
 
     //Use twitter strategy
     passport.use(new TwitterStrategy({
@@ -102,7 +106,7 @@ module.exports = function(passport) {
                     console.log(profile);
                     user = new User({
                         name: profile.displayName,
-                        email: profile.emails[0].value,
+                        email: (profile.emails && profile.emails[0].value) || '',
                         username: profile.username,
                         provider: 'facebook',
                         facebook: profile._json

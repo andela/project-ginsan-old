@@ -1,0 +1,17 @@
+env:
+- HOME=desktop
+
+language: node_js
+
+node_js:
+  - "6.6.0"
+
+script:
+  - npm test
+
+services:
+  - mongodb
+
+before_script:
+  - npm install
+  - npm install -g grunt
