@@ -1,7 +1,10 @@
 node_modules
 public/lib
+coverage
 .sass-cache/
+bower_components
 .DS_store
 c4h_keys.txt
+.env
 .idea/
-
+.vscode
