@@ -54,7 +54,9 @@ exports.session = function (req, res) {
 
 exports.getAllUser = function (req, res, next) {
   User.find({}, function (err, user) {
-    if (err) throw err;
+    if (err) {
+      throw err;
+    }
 
     if (user) {
       res.json(user);
