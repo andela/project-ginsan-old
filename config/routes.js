@@ -1,6 +1,6 @@
 var async = require('async');
 
-var eJwt = require("express-jwt");
+var eJwt = require('express-jwt');
 
 var jwtAuth = eJwt({
     secret: process.env.SECRET_KEY,
@@ -20,14 +20,14 @@ module.exports = function (app, passport, auth) {
     app.use(function (err, req, res, next) {
         if (err.name === 'UnauthorizedError') {
             res.status(401);
-            res.json({ "message": err.name + ": " + err.message });
+            res.json({ 'message': err.name + ': ' + err.message });
         }
     });
 
     //Setting up the users api
     app.post('/users/avatars', users.avatars);
 
-    app.post("/api/auth/signup", users.create);
+    app.post('/api/auth/signup', users.create);
 
     // Donation Routes
     app.post('/donations', users.addDonation);

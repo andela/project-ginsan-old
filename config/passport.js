@@ -3,8 +3,8 @@ var mongoose = require('mongoose'),
     TwitterStrategy = require('passport-twitter').Strategy,
     FacebookStrategy = require('passport-facebook').Strategy,
     GitHubStrategy = require('passport-github').Strategy,
-    JwtStrategy = require("passport-jwt").Strategy,
-    ExtractJwt = require("passport-jwt").ExtractJwt,
+    JwtStrategy = require('passport-jwt').Strategy,
+    ExtractJwt = require('passport-jwt').ExtractJwt,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     User = mongoose.model('User'),
     config = require('./config');
@@ -33,7 +33,7 @@ module.exports = function(passport) {
             passwordField: 'password'
         },
         function(email, password, done) {
-            console.log(email + " " + password);
+            console.log(email + ' ' + password);
             User.findOne({
                 email: email
             }, function(err, user) {
