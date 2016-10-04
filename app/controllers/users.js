@@ -4,8 +4,8 @@
 var mongoose = require('mongoose'),
   User = mongoose.model('User');
 var avatars = require('./avatars').all();
-var jwt = require("jsonwebtoken");
-var passport = require("passport");
+var jwt = require('jsonwebtoken');
+var passport = require('passport');
 
 /**
  * Auth callback
@@ -59,7 +59,7 @@ exports.getAllUser = function (req, res, next) {
     if (user) {
       res.json(user);
     } else {
-      return res.send("There are no users");
+      return res.send('There are no users');
     }
   });
 };
@@ -107,7 +107,7 @@ exports.create = function (req, res) {
           if (err) {
             res.json({
               success: false,
-              message: "Unsuccesful signup",
+              message: 'Unsuccesful signup',
               token: false
             });
           }
@@ -118,7 +118,7 @@ exports.create = function (req, res) {
             res.status(200);
             res.json({
               success: true,
-              message: "Successfull signup",
+              message: 'Successful signup',
               token: token
             });
           });
@@ -127,7 +127,7 @@ exports.create = function (req, res) {
       } else {
         res.json({
           success: false,
-          message: "There is an existing user with this email",
+          message: 'There is an existing user with this email',
           token: false
         });
       }
@@ -135,7 +135,7 @@ exports.create = function (req, res) {
   } else {
     res.json({
       success: false,
-      message: "Please fill the required fields",
+      message: 'Please fill the required fields',
       token: false
     });
   }
