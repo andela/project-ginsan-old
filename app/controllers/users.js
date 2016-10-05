@@ -11,6 +11,7 @@ var passport = require('passport');
  * Auth callback
  */
 exports.authCallback = function (req, res, next) {
+
   res.redirect('/chooseavatars');
 };
 
