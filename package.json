@@ -50,6 +50,7 @@
     "babel-core": "^6.14.0",
     "babel-istanbul": "^0.2.5",
     "coveralls": "^2.11.14",
+    "dotenv": "^2.0.0",
     "grunt": "~0.4.1",
     "grunt-blanket": "0.0.10",
     "grunt-concurrent": "~0.4.0",
