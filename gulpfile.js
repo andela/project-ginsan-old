@@ -13,6 +13,8 @@ var nodemon = require('gulp-nodemon');
 var istanbul = require('gulp-istanbul');
 var fs = require('fs');
 var reload = browserSync.reload;
+require('dotenv').config();
+var port = process.env.PORT;
 
 
 gulp.task('default',function(){
@@ -25,7 +27,8 @@ gulp.task('install', function() {
 });
 
 gulp.task('lint',function(){
-  var jsFilter = filter(['gruntfile.js', 'public/js/**/*.js', 'test/**/*.js', 'app/**/*.js']);
+  var jsFilter = filter(['gruntfile.js', 'public/js/**/*.js',
+   'test/**/*.js', 'app/**/*.js']);
   return gulp.src('./**/*.js')
   .pipe(jsFilter)
   .pipe(jshint());
@@ -87,7 +90,7 @@ gulp.task('nodemon',function(){
 
 gulp.task('serve',['nodemon'],function(){
   browserSync({
-    proxy: 'localhost:3001',
+    proxy: port,
     port: 5000,
     ui: {
       port: 5001
