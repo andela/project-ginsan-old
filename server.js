@@ -28,9 +28,6 @@ var dbOptions = { server: { socketOptions: { keepAlive: 300000,
 
 mongoose.connect(process.env.DB_URL, dbOptions);
 
-mongoose.connect(config.db,dbOptions);
-mongoose.connect(process.env.DB_URL, dbOptions);
-
 //Bootstrap models
 var models_path = __dirname + '/app/models';
 var walk = function(path) {
