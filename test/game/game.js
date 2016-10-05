@@ -2,6 +2,7 @@ var should = require('should');
 var io = require('socket.io-client');
 require('dotenv').config();
 var socketURL = 'http://localhost:'+process.env.PORT;
+console.log(socketURL);
 
 var options ={
   transports: ['websocket'],
