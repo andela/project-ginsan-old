@@ -4,10 +4,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcryptjs'),
-<<<<<<< HEAD
     jwt = require("jsonwebtoken"),
-=======
->>>>>>> f7dc48d76004754999c7205503fca05ceb1d79b1
     _ = require('underscore'),
     authTypes = ['github', 'twitter', 'facebook', 'google'];
 
