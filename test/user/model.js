@@ -24,7 +24,6 @@ describe('<Unit Test>', function() {
         });
 
         describe('Method Save', function() {
-            this.timeout(0);
             it('should be able to save without problems', function(done) {
                 user.save(function(err) {
                     should.not.exist(err);
