@@ -101,14 +101,53 @@ UserSchema.methods = {
     },
 
     generateJwt: function () {
-        var expiry = new Date();
-        expiry.setDate(expiry.getDate() + 7);
+        var dateNow = Date.now();
+        dateNow += 1000 * 60 * 60 * 24 * 7;
+        dateNow = new Date(dateNow);
 
         return jwt.sign({
             _id: this._id
         }, process.env.SECRET_KEY, {
-            expiresIn: 10080
-        }); // DO NOT KEEP YOUR SECRET IN THE CODE!
+                expiresIn: 10000
+            }); // DO NOT KEEP YOUR SECRET IN THE CODE!
+    },
+
+    validateEmail: function (email) {
+        var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+        return re.test(email);
+    },
+
+    validatePass: function () {
+        var errors = [],
+            message = {
+                status: false,
+                error: false
+            };
+        if (p.length < 8) {
+            errors.push("Your password must be at least 8 characters");
+        }
+        if (p.search(/[a-z]/i) < 0) {
+            errors.push("Your password must contain at least one letter.");
+        }
+        if (p.search(/[0-9]/) < 0) {
+            errors.push("Your password must contain at least one digit.");
+        }
+        if (p.search(/[A-Z]/) < 0) {
+            errors.push("Your password must contain at least one uppercase letter.");
+        }
+        if (errors.length > 0) {
+            errors.join("\n");
+            message = {
+                status: false,
+                error: errors
+            };
+            return message;
+        }
+        message = {
+            status: true,
+            error: false
+        };
+        return message;
     },
 
     /**
