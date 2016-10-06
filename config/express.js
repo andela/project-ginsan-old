@@ -42,7 +42,7 @@ module.exports = function(app, passport, mongoose) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 
-        var sessionStore = new MongoStore({ url: 'config.db' }, function(e) {
+        var sessionStore = new MongoStore({ url: 'config.db', db: 'ginsan-staging' }, function(e) {
 
           app.use(express.session({
             store: sessionStore
