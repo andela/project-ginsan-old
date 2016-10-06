@@ -21,11 +21,27 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     mongoose = require('mongoose');
 
 //Bootstrap db connection
-var dbOptions = { server: { socketOptions: { keepAlive: 300000,
-                  connectTimeoutMS: 30000 } },
-                  replset: { socketOptions: { keepAlive: 300000,
-                    connectTimeoutMS : 30000 } },
-                    autoReconnect: true, };
+var dbOptions =
+{
+    server:
+    {
+        auto_reconnect: true,
+        socketOptions:
+         {
+            keepAlive: 300000,
+              connectTimeoutMS: 30000
+         }
+    },
+      replset:
+        {
+            socketOptions:
+                {
+                    keepAlive: 300000,
+                      connectTimeoutMS : 30000
+                }
+        },
+      autoReconnect: true,
+ };
 var db = mongoose.connect(config.db,dbOptions);
 
 //Bootstrap models
