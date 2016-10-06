@@ -1,7 +1,8 @@
 var should = require('should');
 var io = require('socket.io-client');
-
-var socketURL = 'http://localhost:3000';
+require('dotenv').config();
+var socketURL = 'http://localhost:'+process.env.PORT;
+console.log(socketURL);
 
 var options ={
   transports: ['websocket'],
@@ -12,7 +13,7 @@ var cfhPlayer1 = {'name':'Tom'};
 var cfhPlayer2 = {'name':'Sally'};
 var cfhPlayer3 = {'name':'Dana'};
 
-describe("Game Server",function(){
+describe('Game Server',function(){
 
   it('Should accept requests to joinGame', function(done) {
     var client1 = io.connect(socketURL, options);
@@ -74,13 +75,13 @@ describe("Game Server",function(){
     var expectStartGame = function() {
       client1.emit('startGame');
       client1.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       client2.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       client3.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       setTimeout(disconnect,200);
     };
@@ -113,22 +114,22 @@ describe("Game Server",function(){
     var expectStartGame = function() {
       client1.emit('startGame');
       client1.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       client2.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       client3.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       client4.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       client5.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       client6.on('gameUpdate', function(data) {
-        data.state.should.equal("waiting for players to pick");
+        data.state.should.equal('waiting for players to pick');
       });
       setTimeout(disconnect,200);
     };
