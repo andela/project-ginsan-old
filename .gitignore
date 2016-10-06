@@ -7,3 +7,4 @@ coverage
 c4h_keys.txt
 .env
 .idea/
+bower_components
