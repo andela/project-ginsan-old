@@ -63,7 +63,13 @@ gulp.task('test',['pre-test'],function(){
   .pipe(mocha({
     reporter: 'spec'
   }))
-  .pipe(istanbul.writeReports());
+  .pipe(istanbul.writeReports())
+  .once('error', () => {
+      process.exit(1);
+  })
+  .once('end', () => {
+      process.exit();
+  });
 });
 
 

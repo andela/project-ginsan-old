@@ -26,7 +26,7 @@ describe('<Unit Test>', function() {
         describe('Method Save', function() {
             this.timeout(0);
             it('should be able to save without problems', function(done) {
-                return user.save(function(err) {
+                user.save(function(err) {
                     should.not.exist(err);
                     done();
                 });
@@ -34,7 +34,7 @@ describe('<Unit Test>', function() {
 
             it('should be able to show an error when try to save without name', function(done) {
                 user.name = '';
-                return user.save(function(err) {
+                user.save(function(err) {
                     should.exist(err);
                     done();
                 });
