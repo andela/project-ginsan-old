@@ -42,10 +42,33 @@ module.exports = function(app, passport, mongoose) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 
+        var dbOptions =
+        {
+            server:
+            {
+                auto_reconnect: true,
+                socketOptions:
+                 {
+                    keepAlive: 300000,
+                      connectTimeoutMS: 30000
+                 }
+            },
+              replset:
+                {
+                    socketOptions:
+                        {
+                            keepAlive: 300000,
+                              connectTimeoutMS : 30000
+                        }
+                },
+              autoReconnect: true,
+         };
+        var db = mongoose.connect(config.db,dbOptions);
+
         //express/mongo session storage
         app.use(express.session({
             secret: 'MEAN',
-            store: new MongoStore({
+            store: new mongoStore({
                 url: config.db,
                 collection: 'sessions',
                 mongoose_connection: mongoose.connection
