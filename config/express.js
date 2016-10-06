@@ -42,38 +42,24 @@ module.exports = function(app, passport, mongoose) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 
-        var dbOptions =
-        {
-            server:
-            {
-                auto_reconnect: true,
-                socketOptions:
-                 {
-                    keepAlive: 300000,
-                      connectTimeoutMS: 30000
-                 }
-            },
-              replset:
-                {
-                    socketOptions:
-                        {
-                            keepAlive: 300000,
-                              connectTimeoutMS : 30000
-                        }
-                },
-              autoReconnect: true,
-         };
-        var db = mongoose.connect(config.db,dbOptions);
+        var sessionStore = new MongoStore({ url: 'config.db' }, function(e) {
 
-        //express/mongo session storage
-        app.use(express.session({
-            secret: 'MEAN',
-            store: new mongoStore({
-                url: config.db,
-                collection: 'sessions',
-                mongoose_connection: mongoose.connection
-            })
-        }));
+          app.use(express.session({
+            store: sessionStore
+          }));
+
+        // app.listen();
+        });
+
+        // //express/mongo session storage
+        // app.use(express.session({
+        //     secret: 'MEAN',
+        //     store: new mongoStore({
+        //         url: config.db,
+        //         collection: 'sessions',
+        //         mongoose_connection: mongoose.connection
+        //     })
+        // }));
 
         //connect flash for flash messages
         app.use(flash());
