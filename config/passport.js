@@ -7,6 +7,7 @@ var mongoose = require('mongoose'),
     ExtractJwt = require('passport-jwt').ExtractJwt,
     GoogleStrategy = require('passport-google-oauth').OAuth2Strategy,
     User = mongoose.model('User'),
+    validator = require('../app/controllers/validators.js');
     config = require('./config');
 
 module.exports = function(passport) {
@@ -34,6 +35,22 @@ module.exports = function(passport) {
         },
         function(email, password, done) {
             console.log(email + ' ' + password);
+            var emailCheck = validator.validateEmail(email),
+                passCheck = validator.validatePass(password);
+            if(!emailCheck) {
+                return done(null, false, {
+                    success:false,
+                    message:'The email is not valid.',
+                    token:false
+                });
+            }
+            if(!passCheck.status) {
+                return done(null, false, {
+                    success:false,
+                    message:passCheck.error,
+                    token:false
+                });
+            }
             User.findOne({
                 email: email
             }, function(err, user) {

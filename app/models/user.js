@@ -101,14 +101,15 @@ UserSchema.methods = {
     },
 
     generateJwt: function () {
-        var expiry = new Date();
-        expiry.setDate(expiry.getDate() + 7);
+        var dateNow = Date.now();
+        dateNow += 1000 * 60 * 60 * 24 * 7;
+        dateNow = new Date(dateNow);
 
         return jwt.sign({
             _id: this._id
         }, process.env.SECRET_KEY, {
-            expiresIn: 10080
-        }); // DO NOT KEEP YOUR SECRET IN THE CODE!
+                expiresIn: 10000
+            }); // DO NOT KEEP YOUR SECRET IN THE CODE!
     },
 
     /**

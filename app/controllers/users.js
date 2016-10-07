@@ -49,6 +49,7 @@ exports.signout = function (req, res) {
  * Session
  */
 
+
 exports.getAllUser = function (req, res, next) {
   User.find({}, function (err, user) {
     if (err) {
@@ -62,6 +63,7 @@ exports.getAllUser = function (req, res, next) {
     }
   });
 };
+
 
 
 
@@ -93,6 +95,7 @@ exports.checkAvatar = function(req, res) {
 
 };
 
+
 exports.login = function (req, res) {
   passport.authenticate('local', function (err, user, info) {
     var token;
@@ -114,7 +117,6 @@ exports.login = function (req, res) {
     }
   })(req, res);
 };
-
 
 /**
  * Create user
