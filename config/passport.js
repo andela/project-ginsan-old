@@ -42,12 +42,16 @@ module.exports = function(passport) {
                 }
                 if (!user) {
                     return done(null, false, {
-                        message: 'Unknown user'
+                        success:false,
+                        message: 'Unknown user',
+                        token:false
                     });
                 }
                 if (!user.authenticate(password)) {
                     return done(null, false, {
-                        message: 'Invalid password'
+                        success:false,
+                        message: 'Invalid password',
+                        token:false
                     });
                 }
                 user.email = null;
