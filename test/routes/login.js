@@ -7,7 +7,7 @@ var request = require('supertest'),
 describe('Login Integration test', function () {
 
     var url = 'http://localhost:' + process.env.PORT;
-    console.log(url);
+    console.log(url); 
 
     before(function () {
         mongoose.createConnection(process.env.DB_URL);
@@ -69,7 +69,7 @@ describe('Login Integration test', function () {
             });
     });
 
-    it('should return error if user not found', function (done) {
+    it('should return error if user not found in database', function (done) {
         var logInUser = {
             email:'test@jump.com',
             password:'pass'
