@@ -2,7 +2,7 @@
  * Module dependencies.
  */
 var express = require('express'),
-    MongoStore = require('connect-mongo')(express),
+    mongoStore = require('connect-mongo')(express),
     flash = require('connect-flash'),
     helpers = require('view-helpers'),
     config = require('./config');
@@ -42,11 +42,13 @@ module.exports = function(app, passport, mongoose) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 
-        var sessionStore = new MongoStore({ url: 'config.db', db: 'ginsan-staging' }, function(e) {
+        var sessionStore = new mongoStore({ url: 'config.db', db: 'ginsan-staging' }, function(e) {
 
           app.use(express.session({
             store: sessionStore
           }));
+
+          app.use(flash())
 
         // app.listen();
         });
@@ -62,7 +64,7 @@ module.exports = function(app, passport, mongoose) {
         // }));
 
         //connect flash for flash messages
-        app.use(flash());
+        // app.use(flash());
 
         //dynamic helpers
         app.use(helpers(config.app.name));
