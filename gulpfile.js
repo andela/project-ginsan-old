@@ -64,10 +64,10 @@ gulp.task('test',['pre-test'],function(){
     reporter: 'spec'
   }))
   .pipe(istanbul.writeReports())
-  .once('error', () => {
+  .once('error', function(){
       process.exit(1);
   })
-  .once('end', () => {
+  .once('end', function(){
       process.exit();
   });
 });
@@ -96,7 +96,7 @@ gulp.task('nodemon',function(){
 
 gulp.task('serve',['nodemon'],function(){
   browserSync({
-    proxy: port,
+    proxy: 'localhost:'+port,
     port: 5000,
     ui: {
       port: 5001
