@@ -6,11 +6,11 @@ var request = require('supertest'),
 
 describe('Login Integration test', function () {
 
-    var url = 'http://localhost:3001';
+    var url = 'http://localhost:' + process.env.PORT;
     console.log(url); 
 
     before(function () {
-        mongoose.createConnection(process.env.DB_URL || 'mongodb://localhost:27017/cfh');
+        mongoose.createConnection(process.env.DB_URL);
 
         var newUser = {
             name:'test user',
