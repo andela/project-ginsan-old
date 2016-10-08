@@ -35,19 +35,11 @@ module.exports = function(passport) {
         },
         function(email, password, done) {
             console.log(email + ' ' + password);
-            var emailCheck = validator.validateEmail(email),
-                passCheck = validator.validatePass(password);
+            var emailCheck = validator.validateEmail(email);
             if(!emailCheck) {
                 return done(null, false, {
                     success:false,
                     message:'The email is not valid.',
-                    token:false
-                });
-            }
-            if(!passCheck.status) {
-                return done(null, false, {
-                    success:false,
-                    message:passCheck.error,
                     token:false
                 });
             }
