@@ -5,6 +5,7 @@ var request = require('supertest'),
 
 
 describe('Login Integration test', function () {
+    this.timeout(5000);  
 
     var url = 'http://localhost:' + process.env.PORT;
     console.log(url); 
