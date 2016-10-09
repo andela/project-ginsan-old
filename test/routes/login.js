@@ -9,7 +9,7 @@ describe('Login Integration test', function () {
     var url = 'http://localhost:' + process.env.PORT;
     console.log(url); 
 
-    before(function (done) {
+    before(function () {
         mongoose.createConnection(process.env.DB_URL);
 
         var newUser = {
@@ -25,7 +25,6 @@ describe('Login Integration test', function () {
                 if(err) {
                     throw err;
                 }
-                done();
             });
     });
 
