@@ -6,7 +6,7 @@ var request = require('supertest'),
 describe('Signup Integration test', function () {
     this.timeout(140008);
 
-    var url = 'http://localhost:' + process.env.PORT;
+    var baseUrl = 'http://localhost:' + process.env.PORT;
 
     before(function (done) {
         mongoose.createConnection(process.env.DB_URL);
