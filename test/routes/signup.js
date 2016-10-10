@@ -11,7 +11,18 @@ describe('Signup Integration test', function () {
     before(function (done) {
         mongoose.createConnection(process.env.DB_URL);
         done();
-    })
+    });
+
+    after(function (done) {
+        var email = 'test@pass.com';
+        request(baseUrl)
+            .del('/users/delete/'+ email)
+            .end(function (err, res) {
+                if(err) throw err;
+            });
+
+        setTimeout(done, 2500);
+    });
 
     it('should register a new user', function (done) {
         var newUser = {
@@ -20,7 +31,7 @@ describe('Signup Integration test', function () {
             password: 'Password1'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
@@ -42,7 +53,7 @@ describe('Signup Integration test', function () {
             password: 'Password1'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
@@ -64,7 +75,7 @@ describe('Signup Integration test', function () {
             password: 'Password1'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
@@ -87,7 +98,7 @@ describe('Signup Integration test', function () {
             password: 'password'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
@@ -109,7 +120,7 @@ describe('Signup Integration test', function () {
             password: ''
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
