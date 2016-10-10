@@ -21,14 +21,7 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     mongoose = require('mongoose');
 
 //Bootstrap db connection
-<<<<<<< HEAD
-var dbOptions = { server: { socketOptions: { keepAlive: 300000,
-                  connectTimeoutMS: 30000 } },
-                  replset: { socketOptions: { keepAlive: 300000,
-                  connectTimeoutMS : 30000 } } };
 
-mongoose.connect(process.env.DB_URL, dbOptions);
-=======
 var dbOptions =
 {
     server:
@@ -51,7 +44,6 @@ var dbOptions =
       autoReconnect: true,
  };
 var db = mongoose.connect(config.db,dbOptions);
->>>>>>> b4e6e63d93ef08846dfb62f499e0530071cc41ab
 
 //Bootstrap models
 var models_path = __dirname + '/app/models';

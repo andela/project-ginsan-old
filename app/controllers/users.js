@@ -125,6 +125,7 @@ exports.create = function (req, res) {
         user.provider = 'local';
         user.save(function (err) {
           if (err) {
+            res.status(401);
             res.json({
               success: false,
               message: 'Unsuccesful signup',
@@ -144,6 +145,7 @@ exports.create = function (req, res) {
         });
 
       } else {
+        res.status(401);
         res.json({
           success: false,
           message: 'There is an existing user with this email',
