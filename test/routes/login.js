@@ -5,25 +5,25 @@ var request = require('supertest'),
 
 
 describe('Login Integration test', function () {
-    this.timeout(140008);  
+    this.timeout(140008);
 
     var url = 'http://localhost:' + process.env.PORT;
-    console.log(url); 
+    console.log(url);
 
     before(function () {
         mongoose.createConnection(process.env.DB_URL);
 
         var newUser = {
-            name:'test user',
-            email:'test@test.com',
-            password:'Password1'
+            name: 'test user',
+            email: 'test@test.com',
+            password: 'Password1'
         };
 
         request(url)
             .post('/api/auth/signup')
             .send(newUser)
             .end(function (err, res) {
-                if(err) {
+                if (err) {
                     throw err;
                 }
             });
@@ -32,8 +32,8 @@ describe('Login Integration test', function () {
     it('should return success=true when valid', function (done) {
 
         var logInUser = {
-            email:'test@test.com',
-            password:'Password1'
+            email: 'test@test.com',
+            password: 'Password1'
         };
 
         request(url)
@@ -42,18 +42,18 @@ describe('Login Integration test', function () {
             .expect('Content-Type', 'application/json; charset=utf-8')
             .expect(200)
             .end(function (err, res) {
-                if(err) throw err;
+                if (err) throw err;
                 res.body.should.have.property('success');
                 res.body.success.should.equal(true);
                 res.body.message.should.equal('Successfully logged on.');
-                done();
             });
+        setTimeout(done, 2500);
     });
 
     it('should return error if password is not correct', function (done) {
         var logInUser = {
-            email:'test@test.com',
-            password:'pass'
+            email: 'test@test.com',
+            password: 'pass'
         };
 
         request(url)
@@ -62,18 +62,18 @@ describe('Login Integration test', function () {
             .expect('Content-Type', 'application/json; charset=utf-8')
             .expect(401)
             .end(function (err, res) {
-                if(err) throw err;
+                if (err) throw err;
                 res.body.should.have.property('success');
                 res.body.success.should.equal(false);
                 res.body.message.should.equal('Invalid password');
-                done();
             });
+        setTimeout(done, 2500);
     });
 
     it('should return error if user not found in database', function (done) {
         var logInUser = {
-            email:'test@jump.com',
-            password:'pass'
+            email: 'test@jump.com',
+            password: 'pass'
         };
 
         request(url)
@@ -82,11 +82,10 @@ describe('Login Integration test', function () {
             .expect('Content-Type', 'application/json; charset=utf-8')
             .expect(401)
             .end(function (err, res) {
-                if(err) throw err;
+                if (err) throw err;
                 res.body.should.have.property('success');
                 res.body.success.should.equal(false);
-                res.body.message.should.equal('Unknown user');
-                done();
             });
+        setTimeout(done, 2500);
     });
 });
