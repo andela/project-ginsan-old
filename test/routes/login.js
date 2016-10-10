@@ -7,8 +7,8 @@ var request = require('supertest'),
 describe('Login Integration test', function () {
     this.timeout(140008);
 
-    var url = 'http://localhost:' + process.env.PORT;
-    console.log(url);
+    var baseUrl = 'http://localhost:' + process.env.PORT;
+    console.log(baseUrl);
 
     before(function () {
         mongoose.createConnection(process.env.DB_URL);
@@ -19,7 +19,7 @@ describe('Login Integration test', function () {
             password: 'Password1'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .end(function (err, res) {
@@ -29,6 +29,18 @@ describe('Login Integration test', function () {
             });
     });
 
+    after(function (done) {
+        var email = 'test@test.com';
+        request(baseUrl)
+            .del('/users/delete/'+email)
+            .end(function (err, res) {
+                if (err) {
+                    throw err;
+                }
+        });
+        setTimeout(done, 2500);
+    })
+
     it('should return success=true when valid', function (done) {
 
         var logInUser = {
@@ -36,7 +48,7 @@ describe('Login Integration test', function () {
             password: 'Password1'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/login')
             .send(logInUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
@@ -56,7 +68,7 @@ describe('Login Integration test', function () {
             password: 'pass'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/login')
             .send(logInUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
@@ -76,7 +88,7 @@ describe('Login Integration test', function () {
             password: 'pass'
         };
 
-        request(url)
+        request(baseUrl)
             .post('/api/auth/login')
             .send(logInUser)
             .expect('Content-Type', 'application/json; charset=utf-8')

@@ -169,6 +169,23 @@ exports.create = function (req, res) {
   }
 };
 
+
+exports.deleteUser = function (req, res) {
+  console.log(req.params.email);
+  User.findOneAndRemove({email:req.params.email}, function (err, user) {
+    if(err) throw err;
+    user.remove(function (err) {
+      if(err) throw err;
+
+      res.status(202).json({
+        success:true,
+        message:'User successfully deleted',
+        token:false
+      });
+    });
+  });
+};
+
 /**
  * Assign avatar to user
  */
