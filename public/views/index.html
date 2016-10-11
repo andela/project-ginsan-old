@@ -1,6 +1,6 @@
 <div landing id="main-bod">
     <!-- Fixed Logo & Menu Bar Start -->
-    <nav style="padding-left:10em" class="navbar navbar-inverse navbar-fixed-top">
+    <nav style="padding-left:10em" class="navbar navbar-inverse navbar-fixed-top custom-navbar">
         <div class="container">
             <div class="navbar-header col-xs-12" style='padding-right:10em'>
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -26,87 +26,86 @@
 
 
     <!-- Landing Start -->
-    <div class="jumbotron">
+    <div class="jumbotron landing">
         <div class="container">
-            <div class="col-sm-12">
-                <div class="col-sm-6">
-                    <h2 style="font-size:2em;">Cards For Humanity</h2><br>
-                    <p style="font-size:.8em">Unlike most of the party games you've played before, Cards For Humanity is as despicable and awkward as you and your friends. The game is simple. Each round, one player asks a question from a black card, and everyone else answers with
-                        their funniest white card.</p>
-                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-                </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="col-sm-6">
+                        <h2 style="font-size:2em;">Cards For Humanity</h2><br>
+                        <p style="font-size:.8em">Unlike most of the party games you've played before, Cards For Humanity is as despicable and awkward as you and your friends. The game is simple. Each round, one player asks a question from a black card, and everyone else answers
+                            with their funniest white card.</p>
+                        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
+                    </div>
 
-                <div class="col-sm-6">
-                    <iframe width="100%" height="315" src="https://www.youtube.com/embed/KHZh5V8nfO4" frameborder="0" allowfullscreen></iframe>
+                    <div class="col-sm-6">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/KHZh5V8nfO4" frameborder="0" allowfullscreen></iframe>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 
 
-    <div class="container col-md-12 how-to-play-view">
+    <div class="row">
+        <div class="col-md-12 how-to-play-view">
+            <!-- How to Play Start -->
+            <section id="how-to">
+                <div class="wpb-teaser parallax-background" id="how-to-play">
 
-        <!-- How to Play Start -->
-        <section id="how-to">
-            <div class="wpb-teaser parallax-background" id="how-to-play">
+                    <div id="how-to-container">
+                        <div id="main-text">
 
-                <div id="how-to-container">
-                    <div id="main-text">
-
-                        <!-- Teaser Slogan Start -->
-                        <div id="slogan-head">
-                            <div class="span6 wpb-slogan">
-                                <h2>How to Play</h2>
-                            </div>
-                        </div>
-                        <!-- Teaser Slogan End -->
-
-                        <!-- Teaser Text Start -->
-                        <div id="card-list">
-                            <div id="how-to-cards">
-                                <div class="landing-card how-to hvr-hang">
-                                    <h3 class="steps-title">Step one</h3>
-                                    <hr>Each player begins with, and will always have, 10 white answer cards.
-                                </div>
-                                <div class="landing-card how-to hvr-hang">
-                                    <h3 class="steps-title">Step two</h3>
-                                    <hr>For each round, one player is randomly chosen as the Card Czar.
-                                </div>
-                                <div class="landing-card how-to hvr-hang">
-                                    <h3 class="steps-title">Step three</h3>
-                                    <hr>Everyone else answers the black question card by clicking on the answer card they want to use.
-                                </div>
-                                <div class="landing-card how-to hvr-hang">
-                                    <h3 class="steps-title">Step four</h3>
-                                    <hr>The Card Czar then picks a favorite answer, and whoever played that answer wins the round.
+                            <!-- Teaser Slogan Start -->
+                            <div id="slogan-head">
+                                <div class="span6 wpb-slogan">
+                                    <h2>How to Play</h2>
                                 </div>
                             </div>
-                        </div>
-                        <!-- Teaser Text End -->
-                    </div>
+                            <!-- Teaser Slogan End -->
 
-                    <div id="sign-up">
-                        <span ng-show="showOptions">
+                            <!-- Teaser Text Start -->
+                            <div id="card-list">
+                                <div id="how-to-cards">
+                                    <div class="landing-card how-to hvr-grow-shadow">
+                                        <h3 class="steps-title">Step one</h3>
+                                        <hr>Each player begins with, and will always have, 10 white answer cards.
+                                    </div>
+                                    <div class="landing-card how-to hvr-grow-shadow">
+                                        <h3 class="steps-title">Step two</h3>
+                                        <hr>For each round, one player is randomly chosen as the Card Czar.
+                                    </div>
+                                    <div class="landing-card how-to hvr-grow-shadow">
+                                        <h3 class="steps-title">Step three</h3>
+                                        <hr>Everyone else answers the black question card by clicking on the answer card they want to use.
+                                    </div>
+                                    <div class="landing-card how-to hvr-grow-shadow">
+                                        <h3 class="steps-title">Step four</h3>
+                                        <hr>The Card Czar then picks a favorite answer, and whoever played that answer wins the round.
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Teaser Text End -->
+                        </div>
+
+                        <div id="sign-up">
+                            <span ng-show="showOptions">
               <a href="#!/signup" class="btn btn-primary btn-lg" >Sign Up</a>
               <a href="/play" class="btn btn-success btn-lg">Play as guest</a>
 
             </span>
 
-                        <span ng-hide="showOptions">
+                            <span ng-hide="showOptions">
               <a href="#!/app"><div id="sign-up-btn-landing">Join Game</div></a>
             </span>
+                        </div>
                     </div>
-                </div>
-        </section>
-        <!-- How to Play End -->
+            </section>
+            <!-- How to Play End -->
 
+            </div>
 
         </div>
     </div>
-    <!-- Landing End -->
 
-
-    <footer class="footer">
-        <p class="text-center">&copy; Cards For Humanity</p>
-    </footer>
 </div>
+<!-- Landing End -->
