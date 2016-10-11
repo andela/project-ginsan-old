@@ -135,6 +135,7 @@ exports.create = function (req, res) {
           if (err) {
             res.json({
               success: false,
+              error:true,
               message: 'Unsuccesful signup',
               token: false
             });
@@ -155,6 +156,7 @@ exports.create = function (req, res) {
       } else {
         res.json({
           success: false,
+          error:true,
           message: 'There is an existing user with this email',
           token: false
         });
@@ -163,6 +165,7 @@ exports.create = function (req, res) {
   } else {
     res.json({
       success: false,
+      error:true,
       message: 'Please fill the required fields',
       token: false
     });
