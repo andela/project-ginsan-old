@@ -1,9 +1,12 @@
 .jumbotron{
     padding:7em;
-    margin: -18px;
     margin-bottom: 0;
+    font-family: Proxima Nova, Montserrat, Roboto;
   }
 
+.how-to-play-view{
+  background-color:#000;
+}
 
 
  .clear {
@@ -148,7 +151,6 @@
  a:hover {
    text-decoration: none;
    color: #2ecc71;
-   border-radius:0px !important;
  }
 
  p a {
@@ -300,7 +302,7 @@
    margin: 0px auto;
    border-radius: 8px;
    margin-top: 70px;
-   padding: 30px;
+   padding: 10px;
  }
 
  .wpb-teaser .background-opacity {
@@ -339,6 +341,7 @@
  #slogan {
    text-align: center;
    color: white;
+   font-family: Proxima Nova, Montserrat, Roboto
  }
 
  .wpb-teaser .wpb-text p {
@@ -390,11 +393,11 @@
     margin-bottom: -13px;
  }
 
- #sign-up-btn-landing {
+ -btn-landing {
    display: inline-block;
-   border-radius: 8px;
-   -moz-border-radius: 5px;
-   -webkit-border-radius: 5px;
+   border-radius: 2px;
+   -moz-border-radius: 2px;
+   -webkit-border-radius: 2px;
    font-size: 20px;
    font-size: 2em;
    font-weight: 400;
@@ -428,8 +431,8 @@
 
  /**** About Us ****/
 #main-bod {
-   max-width: 1400px;
-   margin: 0px auto;
+   width: 101.7%;
+   margin: -1%;
 }
 
  .wpb-about-us {
@@ -989,15 +992,15 @@
   position: relative;
   display: inline-block;
   box-sizing: border-box;
-  width: 17.5%;
+  width: 19.5%;
   height: 215px;
   padding: 1%;
   margin: 1%;
   background-color: #fff;
-  border-radius: 8px;
+  border-radius: 2px;
   color: #252525;
-  font-family: Arial;
-  font-size: 1.1em;
+  font-family: Proxima Nova, Montserrat, Roboto;
+  font-size: 1.4em;
   font-weight: bold;
   vertical-align: top;
 }
@@ -1064,7 +1067,7 @@
       font-weight: bold;
       margin-right: 0;
       font-size: 11px;
-      max-width: 99%;
+      max-width: 100%;
    }
 
    .wpb-teaser .container {
@@ -1093,7 +1096,7 @@
       line-height: 100px;
       font-weight: bold;
       color: white;
-      padding: 0px 6px;
+      /*padding: 0px 6px;*/
       -webkit-transition: color 0.5s ease;
       -moz-transition: color 0.5s ease;
       -ms-transition: color 0.5s ease;
@@ -1135,9 +1138,9 @@
       min-height: 360px;
       position: relative;
       z-index: 990;
-      width: 98%;
+      width: 100%;
       margin: 0px auto;
-      border-radius: 8px;
+      border-radius: 2px;
       padding: 30px;
    }
 
@@ -1206,7 +1209,7 @@
       padding: 4%;
       margin: 5% 0;
       background-color: #fff;
-      border-radius: 8px;
+      border-radius: 2px;
       color: #252525;
       font-family: Arial;
       font-size: 20px;
