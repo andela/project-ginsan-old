@@ -1,3 +1,11 @@
+.jumbotron{
+    padding:7em;
+    margin: -18px;
+    margin-bottom: 0;
+  }
+
+
+
  .clear {
    clear:both;
  }
@@ -349,6 +357,8 @@
 }
 
 
+
+
  /**** Section Title ****/
  .wpb-section-title {
    background-color: #24272a;
@@ -456,7 +466,7 @@
  }
 
  #how-to-play {
-   margin-top: 190px;
+   margin-top: 50px;
  }
 
  #how-to-cards {
