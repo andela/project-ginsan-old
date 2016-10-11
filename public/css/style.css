@@ -993,11 +993,11 @@
   display: inline-block;
   box-sizing: border-box;
   width: 19.5%;
-  height: 215px;
+  height: 250px;
   padding: 1%;
   margin: 1%;
   background-color: #fff;
-  border-radius: 2px;
+  border-radius: 3px;
   color: #252525;
   font-family: Proxima Nova, Montserrat, Roboto;
   font-size: 1.4em;
@@ -1005,6 +1005,9 @@
   vertical-align: top;
 }
 
+.steps-title{
+  font-weight: bold;
+}
 
 /*Override Bootstrap Row Class*/
 .row {
