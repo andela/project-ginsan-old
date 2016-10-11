@@ -52,6 +52,7 @@ module.exports = function(passport) {
                 if (!user) {
                     return done(null, false, {
                         success:false,
+                        error:true,
                         message: 'Unknown user',
                         token:false
                     });
@@ -59,6 +60,7 @@ module.exports = function(passport) {
                 if (!user.authenticate(password)) {
                     return done(null, false, {
                         success:false,
+                        error:true,
                         message: 'Invalid password',
                         token:false
                     });

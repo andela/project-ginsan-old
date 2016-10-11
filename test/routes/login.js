@@ -75,8 +75,8 @@ describe('Login Integration test', function () {
             .expect(401)
             .end(function (err, res) {
                 if (err) throw err;
-                res.body.should.have.property('success');
-                res.body.success.should.equal(false);
+                res.body.should.have.property('error');
+                res.body.error.should.equal(true);
                 res.body.message.should.equal('Invalid password');
             });
         setTimeout(done, 2500);
@@ -95,8 +95,8 @@ describe('Login Integration test', function () {
             .expect(401)
             .end(function (err, res) {
                 if (err) throw err;
-                res.body.should.have.property('success');
-                res.body.success.should.equal(false);
+                res.body.should.have.property('error');
+                res.body.error.should.equal(true);
             });
         setTimeout(done, 2500);
     });
