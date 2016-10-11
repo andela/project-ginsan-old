@@ -430,10 +430,10 @@
  }
 
  /**** About Us ****/
-#main-bod {
-   width: 101.7%;
-   margin: -1%;
-}
+ #main-bod {
+    width: 101.7%;
+    margin: -1%;
+ }
 
  .wpb-about-us {
    background-color: #fff;
