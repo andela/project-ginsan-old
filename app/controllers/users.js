@@ -102,6 +102,7 @@ exports.create = function (req, res) {
         emailCheck = validator.validateEmail(req.body.email);
     console.log(emailCheck);
     if (!emailCheck) {
+      
       return res.status(401).json({
         success: false,
         message: "The email is not valid",
