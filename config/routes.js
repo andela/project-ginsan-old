@@ -28,8 +28,6 @@ module.exports = function (app, passport, auth) {
     app.post('/api/auth/signup', users.create);
 
     app.delete('/users/delete/:email', users.deleteUser);
-
-    app.post('/api/auth/login', users.login);
     
     app.post('/users/avatars', users.avatars);
 
