@@ -350,12 +350,13 @@
    text-transform: uppercase;
    line-height: 60px;
    text-align: center;
+   font-family: 'Roboto', sans-serif;
  }
 
  #slogan {
    text-align: center;
    color: white;
-   font-family: Proxima Nova, Montserrat, Roboto
+   font-family:'Roboto', sans-serif;
  }
 
  .wpb-teaser .wpb-text p {
@@ -1021,9 +1022,8 @@
   background-color: #fff;
   border-radius: 3px;
   color: #252525;
-  font-family: Proxima Nova, Montserrat, Roboto;
+  font-family:'Roboto', sans-serif;
   font-size: 1.4em;
-  font-weight: bold;
   vertical-align: top;
 }
 
@@ -1176,6 +1176,7 @@
       text-transform: uppercase;
       text-align: center;
       line-height: 24px;
+      font-family: 'Roboto', sans-serif;
    }
 
    .wpb-top-bar {
