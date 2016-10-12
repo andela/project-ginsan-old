@@ -1,5 +1,6 @@
 .custom-navbar{
   background: url('../img/footer_lodyas.png');
+  /*padding-left:10em;*/
 }
 
 .landing{
@@ -1010,6 +1011,15 @@
   -o-animation-delay: 5s;
 }
 
+.discription-title{
+  font-size:2em;
+  font-family: 'Roboto', sans-serif;
+}
+
+.discription-text{
+  font-size:1em;
+  font-family: 'Roboto', sans-serif;
+}
 
 .landing-card {
   position: relative;
