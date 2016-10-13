@@ -42,27 +42,6 @@ module.exports = function(app, passport, mongoose) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 
-
-<<<<<<< HEAD
-          app.use(express.session({
-            store: sessionStore
-          }));
-
-          app.use(flash());
-
-        // app.listen();
-        });
-
-        // //express/mongo session storage
-        // app.use(express.session({
-        //     secret: 'MEAN',
-        //     store: new mongoStore({
-        //         url: config.db,
-        //         collection: 'sessions',
-        //         mongoose_connection: mongoose.connection
-        //     })
-        // }));
-=======
         // var sessionStore = new mongoStore({ url: 'config.db', db: 'ginsan-staging' }, function(e) {
         // 
         //   app.use(express.session({
@@ -83,7 +62,6 @@ module.exports = function(app, passport, mongoose) {
                 mongoose_connection: mongoose.connection
             })
         }));
->>>>>>> 663c66ad9289974562ba12fd66cfc1a54fd241c3
 
         //connect flash for flash messages
         app.use(flash());
