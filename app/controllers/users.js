@@ -123,8 +123,6 @@ exports.login = function (req, res) {
  */
 exports.create = function (req, res) {
   if (req.body.name && req.body.password && req.body.email) {
-<<<<<<< HEAD
-=======
     var passCheck = validator.validatePass(req.body.password),
         emailCheck = validator.validateEmail(req.body.email);
     console.log(emailCheck);
@@ -143,7 +141,6 @@ exports.create = function (req, res) {
         token: false
       });
     }
->>>>>>> 663c66ad9289974562ba12fd66cfc1a54fd241c3
     User.findOne({
       email: req.body.email
     }).exec(function (err, existingUser) {
