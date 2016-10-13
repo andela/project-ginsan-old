@@ -21,36 +21,36 @@ gulp.task('default',function(){
   gulpSequence(['lint','install'],'sass','serve','watch-changes');
 });
 
-// gulp.task('install', function() {
-//   return bower('./bower_components')
-//     .pipe(gulp.dest('./public/lib'));
-// });
+gulp.task('install', function() {
+  return bower('./bower_components')
+    .pipe(gulp.dest('./public/lib'));
+});
 
-// gulp.task('lint',function(){
-//   var jsFilter = filter(['gruntfile.js', 'public/js/**/*.js',
-//    'test/**/*.js', 'app/**/*.js']);
-//   return gulp.src('./**/*.js')
-//   .pipe(jsFilter)
-//   .pipe(jshint());
-// });
+gulp.task('lint',function(){
+  var jsFilter = filter(['gruntfile.js', 'public/js/**/*.js',
+   'test/**/*.js', 'app/**/*.js']);
+  return gulp.src('./**/*.js')
+  .pipe(jsFilter)
+  .pipe(jshint());
+});
 
-// gulp.task('sass',['clean-css'],function(){
-//   return gulp.src('public/css/common.scss')
-//   .pipe(sourcemaps.init())
-//   .pipe(sass().on('error',sass.logError))
-//   .pipe(sourcemaps.write())
-//   .pipe(gulp.dest('public/css/'));
-// });
+gulp.task('sass',['clean-css'],function(){
+  return gulp.src('public/css/common.scss')
+  .pipe(sourcemaps.init())
+  .pipe(sass().on('error',sass.logError))
+  .pipe(sourcemaps.write())
+  .pipe(gulp.dest('public/css/'));
+});
 
-// gulp.task('clean-css',function(){
-//   try{
-//     fs.unlinkSync('public/css/common.css');
-//   }
-//   catch(err){
-//     //no file exists continue
-//   }
+gulp.task('clean-css',function(){
+  try{
+    fs.unlinkSync('public/css/common.css');
+  }
+  catch(err){
+    //no file exists continue
+  }
 
-// });
+});
 
 gulp.task('pre-test',function(){
   return gulp.src(['test/**/*.js'])
