@@ -1,6 +1,15 @@
 var async = require('async');
 
-module.exports = function(app, passport, auth) {
+var eJwt = require('express-jwt');
+
+var jwtAuth = eJwt({
+    secret: process.env.SECRET_KEY,
+    userProperty: 'payload'
+});
+
+module.exports = function (app, passport, auth) {
+
+
     //User Routes
     var users = require('../app/controllers/users');
     app.get('/signin', users.signin);
@@ -8,8 +17,18 @@ module.exports = function(app, passport, auth) {
     app.get('/chooseavatars', users.checkAvatar);
     app.get('/signout', users.signout);
 
+    app.use(function (err, req, res, next) {
+        if (err.name === 'UnauthorizedError') {
+            res.status(401);
+            res.json({ 'message': err.name + ': ' + err.message });
+        }
+    });
+
     //Setting up the users api
-    app.post('/users', users.create);
+    app.post('/api/auth/signup', users.create);
+
+    app.delete('/users/delete/:email', users.deleteUser);
+    
     app.post('/users/avatars', users.avatars);
 
     // Donation Routes
