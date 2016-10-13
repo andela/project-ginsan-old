@@ -23,6 +23,7 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     console.log(config.db);
 
 //Bootstrap db connection
+
 var dbOptions =
 {
     server:
@@ -72,6 +73,8 @@ app.use(function(req, res, next){
     next();
 });
 
+
+var apiRoutes = express.Router();
 //express settings
 require('./config/express')(app, passport, mongoose);
 
