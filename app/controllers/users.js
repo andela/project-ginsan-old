@@ -6,6 +6,7 @@ var mongoose = require('mongoose'),
 var avatars = require('./avatars').all();
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
+var validator = require('./validators');
 
 /**
  * Auth callback
@@ -183,6 +184,7 @@ exports.create = function (req, res) {
       }
     });
   } else {
+    res.status(400)
     res.json({
       success: false,
       error:true,

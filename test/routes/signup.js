@@ -124,7 +124,7 @@ describe('Signup Integration test', function () {
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
-            .expect(401)
+            .expect(400)
             .end(function (err, res) {
                 if (err) throw err;
 
