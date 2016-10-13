@@ -7,4 +7,5 @@ coverage
 c4h_keys.txt
 .env
 .idea/
+.vscode
 bower_components

@@ -1,7 +1,7 @@
 var path = require('path'),
 rootPath = path.normalize(__dirname + '/../..');
 var keys = rootPath + '/keys.txt';
-
+var localDb = '';
 module.exports = {
 	root: rootPath,
 	port: process.env.PORT || 3000,

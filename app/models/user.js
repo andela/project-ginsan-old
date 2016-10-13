@@ -4,6 +4,7 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     bcrypt = require('bcryptjs'),
+    jwt = require("jsonwebtoken"),
     _ = require('underscore'),
     authTypes = ['github', 'twitter', 'facebook', 'google'];
 
@@ -19,7 +20,7 @@ var UserSchema = new Schema({
     avatar: String,
     premium: Number, // null or 0 for non-donors, 1 for everyone else (for now)
     donations: [],
-    hashed_password: String,
+    hashed_password: String, 
     facebook: {},
     twitter: {},
     github: {},
@@ -29,40 +30,40 @@ var UserSchema = new Schema({
 /**
  * Virtuals
  */
-UserSchema.virtual('password').set(function(password) {
+UserSchema.virtual('password').set(function (password) {
     this._password = password;
     this.hashed_password = this.encryptPassword(password);
-}).get(function() {
+}).get(function () {
     return this._password;
 });
 
 /**
  * Validations
  */
-var validatePresenceOf = function(value) {
+var validatePresenceOf = function (value) {
     return value && value.length;
 };
 
 // the below 4 validations only apply if you are signing up traditionally
-UserSchema.path('name').validate(function(name) {
+UserSchema.path('name').validate(function (name) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (authTypes.indexOf(this.provider) !== -1) return true;
     return name.length;
 }, 'Name cannot be blank');
 
-UserSchema.path('email').validate(function(email) {
+UserSchema.path('email').validate(function (email) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (authTypes.indexOf(this.provider) !== -1) return true;
     return email.length;
 }, 'Email cannot be blank');
 
-UserSchema.path('username').validate(function(username) {
+UserSchema.path('username').validate(function (username) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (authTypes.indexOf(this.provider) !== -1) return true;
     return username.length;
 }, 'Username cannot be blank');
 
-UserSchema.path('hashed_password').validate(function(hashed_password) {
+UserSchema.path('hashed_password').validate(function (hashed_password) {
     // if you are authenticating by any of the oauth strategies, don't validate
     if (authTypes.indexOf(this.provider) !== -1) return true;
     return hashed_password.length;
@@ -72,7 +73,7 @@ UserSchema.path('hashed_password').validate(function(hashed_password) {
 /**
  * Pre-save hook
  */
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
     if (!this.isNew) return next();
 
     if (!validatePresenceOf(this.password) && authTypes.indexOf(this.provider) === -1)
@@ -92,11 +93,23 @@ UserSchema.methods = {
      * @return {Boolean}
      * @api public
      */
-    authenticate: function(plainText) {
+    authenticate: function (plainText) {
         if (!plainText || !this.hashed_password) {
             return false;
         }
-        return bcrypt.compareSync(plainText,this.hashed_password);
+        return bcrypt.compareSync(plainText, this.hashed_password);
+    },
+
+    generateJwt: function () {
+        var dateNow = Date.now();
+        dateNow += 1000 * 60 * 60 * 24 * 7;
+        dateNow = new Date(dateNow);
+
+        return jwt.sign({
+            _id: this._id
+        }, process.env.SECRET_KEY, {
+                expiresIn: 10000
+            }); // DO NOT KEEP YOUR SECRET IN THE CODE!
     },
 
     /**
@@ -106,7 +119,7 @@ UserSchema.methods = {
      * @return {String}
      * @api public
      */
-    encryptPassword: function(password) {
+    encryptPassword: function (password) {
         if (!password) return '';
         return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     }
