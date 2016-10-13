@@ -6,7 +6,7 @@ var mongoose = require('mongoose'),
 var avatars = require('./avatars').all();
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
-
+var validator = require('./validators');
 /**
  * Auth callback
  */
@@ -67,7 +67,7 @@ exports.getAllUser = function (req, res, next) {
 
 
 
-exports.session = function(req, res) {
+exports.session = function (req, res) {
   res.redirect('/');
 };
 /** 
@@ -76,11 +76,11 @@ exports.session = function(req, res) {
  * to our Choose an Avatar page.
  */
 
-exports.checkAvatar = function(req, res) {
+exports.checkAvatar = function (req, res) {
   if (req.user && req.user._id) {
     User.findOne({
-      _id: req.user._id
-    })
+        _id: req.user._id
+      })
       .exec(function (err, user) {
         if (user.avatar !== undefined) {
           res.redirect('/#!/');
@@ -124,10 +124,10 @@ exports.login = function (req, res) {
 exports.create = function (req, res) {
   if (req.body.name && req.body.password && req.body.email) {
     var passCheck = validator.validatePass(req.body.password),
-        emailCheck = validator.validateEmail(req.body.email);
+      emailCheck = validator.validateEmail(req.body.email);
     console.log(emailCheck);
     if (!emailCheck) {
-      
+
       return res.status(401).json({
         success: false,
         message: "The email is not valid",
@@ -154,7 +154,7 @@ exports.create = function (req, res) {
             res.status(401);
             res.json({
               success: false,
-              error:true,
+              error: true,
               message: 'Unsuccesful signup',
               token: false
             });
@@ -176,7 +176,7 @@ exports.create = function (req, res) {
         res.status(401);
         res.json({
           success: false,
-          error:true,
+          error: true,
           message: 'There is an existing user with this email',
           token: false
         });
@@ -185,7 +185,7 @@ exports.create = function (req, res) {
   } else {
     res.json({
       success: false,
-      error:true,
+      error: true,
       message: 'Please fill the required fields',
       token: false
     });
@@ -195,19 +195,29 @@ exports.create = function (req, res) {
 
 
 exports.deleteUser = function (req, res) {
-  console.log(req.params.email);
-  User.findOneAndRemove({email:req.params.email}, function (err, user) {
-    if(err) throw err;
+  User.findOneAndRemove({
+    email: req.params.email
+  }, function (err, user) {
+    if (err) throw err;
     user.remove(function (err) {
-      if(err) throw err;
+      if (err) throw err;
 
       res.status(202).json({
-        success:true,
-        message:'User successfully deleted',
-        token:false
+        success: true,
+        message: 'User successfully deleted',
+        token: false
       });
     });
   });
+};
+
+
+/**
+ * Save friend
+ */
+
+exports.saveFriends = function (req, res) {
+  
 };
 
 /**
@@ -218,8 +228,8 @@ exports.avatars = function (req, res) {
   if (req.user && req.user._id && req.body.avatar !== undefined &&
     /\d/.test(req.body.avatar) && avatars[req.body.avatar]) {
     User.findOne({
-      _id: req.user._id
-    })
+        _id: req.user._id
+      })
       .exec(function (err, user) {
         user.avatar = avatars[req.body.avatar];
         user.save();
@@ -233,8 +243,8 @@ exports.addDonation = function (req, res) {
     // Verify that the object contains crowdrise data
     if (req.body.amount && req.body.crowdrise_donation_id && req.body.donor_name) {
       User.findOne({
-        _id: req.user._id
-      })
+          _id: req.user._id
+        })
         .exec(function (err, user) {
           // Confirm that this object hasn't already been entered
           var duplicate = false;
