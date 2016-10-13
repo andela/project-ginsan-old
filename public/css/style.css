@@ -974,6 +974,10 @@
    color: white;
  }
 
+.fb-twt-handle, .fa{
+  padding-right: 10px;
+  font-size:1.4em;
+}
  .legal {
    color: white;
  }
@@ -981,8 +985,6 @@
  /**** Margins ****/
 
 .mod-contain {
-   /*padding-right: 15px;
-   padding-left: 15px;*/
    margin-right: auto;
    margin-left: auto;
    width: 90%;
