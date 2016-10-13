@@ -1,7 +1,7 @@
 /**
  * Module dependencies.
  */
- require('dotenv').config();
+require('dotenv').config();
 var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
@@ -20,33 +20,32 @@ var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     auth = require('./config/middlewares/authorization'),
     mongoose = require('mongoose');
 
+console.log(config.db);
+
 //Bootstrap db connection
+
 var dbOptions = {
-    server:
-    {
+    server: {
         auto_reconnect: true,
-        socketOptions:
-         {
+        socketOptions: {
             keepAlive: 300000,
-              connectTimeoutMS: 30000
-         }
+            connectTimeoutMS: 30000
+        }
     },
-      replset:
-        {
-            socketOptions:
-                {
-                    keepAlive: 300000,
-                      connectTimeoutMS : 30000
-                }
-        },
-      autoReconnect: true,
- };
-var db = mongoose.connect(config.db,dbOptions);
+    replset: {
+        socketOptions: {
+            keepAlive: 300000,
+            connectTimeoutMS: 30000
+        }
+    },
+    autoReconnect: true,
+};
+var db = mongoose.connect(config.db, dbOptions);
 
 //Bootstrap models
 var models_path = __dirname + '/app/models';
-var walk = function(path) {
-    fs.readdirSync(path).forEach(function(file) {
+var walk = function (path) {
+    fs.readdirSync(path).forEach(function (file) {
         var newPath = path + '/' + file;
         var stat = fs.statSync(newPath);
         if (stat.isFile()) {
@@ -65,7 +64,7 @@ require('./config/passport')(passport);
 
 var app = express();
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
     next();
 });
 
@@ -80,7 +79,9 @@ require('./config/routes')(app, passport, auth);
 //Start the app by listening on <port>
 var port = config.port;
 var server = app.listen(port);
-var ioObj = io.listen(server, { log: false });
+var ioObj = io.listen(server, {
+    log: false
+});
 //game logic handled here
 require('./config/socket/socket')(ioObj);
 console.log('Express app started on port ' + port);
