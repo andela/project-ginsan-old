@@ -192,10 +192,7 @@ exports.create = function (req, res) {
   }
 };
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 663c66ad9289974562ba12fd66cfc1a54fd241c3
 exports.deleteUser = function (req, res) {
   console.log(req.params.email);
   User.findOneAndRemove({email:req.params.email}, function (err, user) {
