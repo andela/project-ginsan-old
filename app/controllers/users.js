@@ -218,50 +218,6 @@ exports.deleteUser = function (req, res) {
  */
 
 
-// exports.saveFriends = function (req, res) {
-//   console.log(req.body.friends);
-//   if (typeof req.body.friends === 'object' && req.params.me) {
-//     User.findOne({
-//         _id: req.params.me
-//       }).exec()
-//       .then(function (user) {
-//         var oldFriendsList = user.friends;
-//         console.log(user);
-//         for (i = 0; i < req.body.friends.length; i++) {
-//           if (oldFriendsList.indexOf(req.body.friends[i]) < 0) {
-//             oldFriendsList.push(req.body.friends[i])
-//           }
-//         }
-//         User.update({
-//             $set: {
-//               friends: oldFriendsList
-//             }
-//           })
-//           .exec(function (err, user) {
-//             if(err) throw err;
-//           })
-
-//       }).then(function (done) {
-//         res.status(200);
-//         res.json({
-//           status: true,
-//           error: false,
-//           message: "Successfully added"
-//         });
-//       }, function (err) {
-//         res.send(err);
-//       });
-
-//   } else {
-//     res.status(400);
-//     res.json({
-//       status: false,
-//       error: true,
-//       message: 'Send the required parameters'
-//     });
-//   }
-// };
-
 exports.saveFriends = function (req, res) {
   var userId = mongoose.Types.ObjectId(req.params.user);
   if (req.params.user && typeof req.body.friends === 'object') {
@@ -293,6 +249,8 @@ exports.saveFriends = function (req, res) {
     });
   }
 };
+
+
 
 
 
