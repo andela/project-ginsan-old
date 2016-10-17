@@ -149,7 +149,7 @@ exports.create = function (req, res) {
         // Switch the user's avatar index to an actual avatar url
         user.avatar = avatars[user.avatar];
         user.provider = 'local';
-        user.save(function (err) {
+        user.save(function (err, user) {
           if (err) {
             res.status(401);
             res.json({
@@ -165,6 +165,7 @@ exports.create = function (req, res) {
             if (err) return next(err);
             res.status(200);
             res.json({
+              userId: user._id,
               success: true,
               message: 'Successful signup',
               token: token
@@ -216,9 +217,100 @@ exports.deleteUser = function (req, res) {
  * Save friend
  */
 
+
+// exports.saveFriends = function (req, res) {
+//   console.log(req.body.friends);
+//   if (typeof req.body.friends === 'object' && req.params.me) {
+//     User.findOne({
+//         _id: req.params.me
+//       }).exec()
+//       .then(function (user) {
+//         var oldFriendsList = user.friends;
+//         console.log(user);
+//         for (i = 0; i < req.body.friends.length; i++) {
+//           if (oldFriendsList.indexOf(req.body.friends[i]) < 0) {
+//             oldFriendsList.push(req.body.friends[i])
+//           }
+//         }
+//         User.update({
+//             $set: {
+//               friends: oldFriendsList
+//             }
+//           })
+//           .exec(function (err, user) {
+//             if(err) throw err;
+//           })
+
+//       }).then(function (done) {
+//         res.status(200);
+//         res.json({
+//           status: true,
+//           error: false,
+//           message: "Successfully added"
+//         });
+//       }, function (err) {
+//         res.send(err);
+//       });
+
+//   } else {
+//     res.status(400);
+//     res.json({
+//       status: false,
+//       error: true,
+//       message: 'Send the required parameters'
+//     });
+//   }
+// };
+
 exports.saveFriends = function (req, res) {
-  
-};
+  var userId = mongoose.Types.ObjectId(req.params.user);
+  if (req.params.user && typeof req.body.friends === 'object') {
+    User.findOne({
+      _id: userId
+    }, function (err, user) {
+      if (err) throw err;
+      if (!user) {
+        res.status(400)
+        res.json({
+          status: false,
+          error: true,
+          message: "User not found"
+        });
+      }
+      oldFriendsList = user.friends;
+      for (var i = 0; i < req.body.friends.length; i++) {
+        if (oldFriendsList.indexOf(req.body.friends[i]) < 0) {
+          user.friends.push(req.body.friends[i]);
+          user.save();
+          res.status(200);
+          res.json({
+            status: true,
+            error: false,
+            message: "Successfully updated"
+          })
+        }
+      }
+    });
+      // .exec(function (err, user) {
+      //     if(err) throw err;
+      //     var oldFriendsList = user.friends;
+      //     req.body.friends.map(function (id) {
+      //       if (oldFriendsList.indexOf(req.body.friends[id]) < 0) {
+      //         user.friends.push(req.body.friends[id]);
+      //       }
+      //     });
+      //     user.update({
+      //       $set: {
+      //         friends: oldFriendsList
+      //       }
+      //     })
+      //       .exec(function (err, user) {
+      //         if (err) throw err;
+      //         res.json(user);
+      //       });
+      // });
+  }
+}
 
 /**
  * Assign avatar to user
