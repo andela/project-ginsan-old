@@ -1,0 +1,28 @@
+<div class="row" style="padding-top:.5em">
+
+    <div (click)="onSelect()" class="col s4" style="background-color:#ccc; height:18em; border-right:2px solid #fff;box-shadow: 0px 1px 2px 0 rgba(34, 36, 38, 0.15);position:relative">
+        <span style="display:inline-block; width:80%; height:15em; background-color:#fff; position:absolute" class="card "></span>
+        <span style="display:inline-block; width:80%; height:15em; background-color:#fff; position:absolute;top:.3em; left:.3em"
+            class="card"></span>
+        <span style="display:inline-block; width:80%; height:15em; background-color:#fff; position:absolute;top:.6em; left:.6em"
+            class="card"></span>
+        <span style="display:inline-block; width:80%; 
+              height:15em; background-color:#fff; 
+              position:absolute;top:.9em; left:.9em;
+              text-align:center;cursor:pointer" class="card blue-grey darken-1 align center">
+          <span style="display:inline-block;margin-top:1.3em; font-size:3em">Q's</span>
+        </span>
+    </div>
+
+    <div class="col s8" style="background-color:#ccc; height:18em">
+        <div class="row flip">
+            <div class="col s12 card card-flip" [ngClass]="{'flipped':flip}" style="height:16em">
+                    <div class="face back">
+                        <p style="font-size:1.5em;padding:1em">
+                            {{front}}
+                        </p>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,14 @@
+<div [ngStyle]="{position:getDeckStyle()}"
+    class="card-deck"> 
+    
+    <span *ngFor="let card of cards; let i=index"
+         [ngStyle]="{left: getCardStyle(i)}"
+         (click) = "onSelect(card)"
+         style="display:inline-block; width:12em; height:16em;
+           background-color:#fff; position:absolute;top:.6em; text-align:center;padding:3em .3em" 
+           class="card white darken-1 align center my-card"
+        >
+        <span style="display:inline-block;margin-top:1em;
+        padding:auto .3em;margin-top:0;font-size:2em">{{card}}</span>
+    </span>
+</div>

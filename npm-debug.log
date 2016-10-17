@@ -1,14 +1,14 @@
 0 info it worked if it ends with ok
 1 verbose cli [ '/usr/bin/nodejs', '/usr/bin/npm', 'start' ]
 2 info using npm@3.10.3
-3 info using node@v6.7.0
+3 info using node@v6.6.0
 4 verbose run-script [ 'prestart', 'start', 'poststart' ]
 5 info lifecycle cardsforhumanity@1.0.0~prestart: cardsforhumanity@1.0.0
 6 silly lifecycle cardsforhumanity@1.0.0~prestart: no script for prestart, continuing
 7 info lifecycle cardsforhumanity@1.0.0~start: cardsforhumanity@1.0.0
 8 verbose lifecycle cardsforhumanity@1.0.0~start: unsafe-perm in lifecycle true
-9 verbose lifecycle cardsforhumanity@1.0.0~start: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/fortune/Desktop/project-ginsan/node_modules/.bin:/usr/bin:/home/fortune/bin:/home/fortune/.local/bin:/usr/local/heroku/bin:/home/fortune/.npm-global/bin:/home/fortune/bin:/home/fortune/.local/bin:/home/fortune/.npm-global/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
-10 verbose lifecycle cardsforhumanity@1.0.0~start: CWD: /home/fortune/Desktop/project-ginsan
+9 verbose lifecycle cardsforhumanity@1.0.0~start: PATH: /usr/lib/node_modules/npm/bin/node-gyp-bin:/home/sims05/Desktop/test/project-ginsan/node_modules/.bin:/usr/bin:/home/sims05/bin:/home/sims05/.local/bin:/home/sims05/bin:/home/sims05/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin
+10 verbose lifecycle cardsforhumanity@1.0.0~start: CWD: /home/sims05/Desktop/test/project-ginsan
 11 silly lifecycle cardsforhumanity@1.0.0~start: Args: [ '-c', 'gulp' ]
 12 silly lifecycle cardsforhumanity@1.0.0~start: Returned: code: 1  signal: null
 13 info lifecycle cardsforhumanity@1.0.0~start: Failed to exec start script
@@ -23,10 +23,10 @@
 14 verbose stack     at maybeClose (internal/child_process.js:877:16)
 14 verbose stack     at Process.ChildProcess._handle.onexit (internal/child_process.js:226:5)
 15 verbose pkgid cardsforhumanity@1.0.0
-16 verbose cwd /home/fortune/Desktop/project-ginsan
-17 error Linux 4.4.0-38-generic
+16 verbose cwd /home/sims05/Desktop/test/project-ginsan
+17 error Linux 4.4.0-42-generic
 18 error argv "/usr/bin/nodejs" "/usr/bin/npm" "start"
-19 error node v6.7.0
+19 error node v6.6.0
 20 error npm  v3.10.3
 21 error code ELIFECYCLE
 22 error cardsforhumanity@1.0.0 start: `gulp`

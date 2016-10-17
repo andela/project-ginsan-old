@@ -1,0 +1,20 @@
+<div class="row">
+    <div class="col s4">
+        <img class="left" [src]="details.avatarImg" style="width:100%"/>
+        <p style="font-size:1.2em"><b>{{details.username}}</b></p>
+    </div>
+    <div class="col s8" style="pading-top:0; pading:right:0">
+        <div class="row" style="border-left:1px solid #fff;padding-left:.5em">
+            <b>
+                <p style="margin-bottom:.2em">Role: {{details.role}}</p>
+                <p style="margin-top:.2em">Rounds won: {{details.roundsWon}} / 3 </p>
+                <span style="padding-bottom:1em" *ngIf="details.admin">
+                    <button>Exit game</button>
+                </span>
+                <span style="padding-bottom:1em" *ngIf="!details.admin">
+                    <button>Ping</button>
+                </span>
+            </b>
+        </div>
+    </div>
+</div>

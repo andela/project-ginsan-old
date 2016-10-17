@@ -64,17 +64,18 @@ require('./config/passport')(passport);
 
 var app = express();
 
-app.use(function (req, res, next) {
-    next();
-});
-
-
 var apiRoutes = express.Router();
+
 //express settings
 require('./config/express')(app, passport, mongoose);
 
 //Bootstrap routes
 require('./config/routes')(app, passport, auth);
+
+//Serve the index file to make html5mode work on the client
+app.use(function(req, res, next) {
+    console.log('request got here');
+});
 
 //Start the app by listening on <port>
 var port = config.port;
