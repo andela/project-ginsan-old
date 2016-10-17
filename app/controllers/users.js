@@ -291,26 +291,10 @@ exports.saveFriends = function (req, res) {
         }
       }
     });
-      // .exec(function (err, user) {
-      //     if(err) throw err;
-      //     var oldFriendsList = user.friends;
-      //     req.body.friends.map(function (id) {
-      //       if (oldFriendsList.indexOf(req.body.friends[id]) < 0) {
-      //         user.friends.push(req.body.friends[id]);
-      //       }
-      //     });
-      //     user.update({
-      //       $set: {
-      //         friends: oldFriendsList
-      //       }
-      //     })
-      //       .exec(function (err, user) {
-      //         if (err) throw err;
-      //         res.json(user);
-      //       });
-      // });
   }
-}
+};
+
+
 
 /**
  * Assign avatar to user
