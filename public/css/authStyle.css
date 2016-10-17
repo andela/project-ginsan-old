@@ -1,5 +1,13 @@
-body, html{
-  height: 100%;
+.authUp{
+  width: 100%;
+  background-repeat: no-repeat;
+  background-color: #d3d3d3;
+  font-family: Roboto;
+}
+
+.authIn{
+  height: 680px;
+  width: 100%;
   background-repeat: no-repeat;
   background-color: #d3d3d3;
   font-family: Roboto;
@@ -30,7 +38,7 @@ label{
 
 input,
 input::-webkit-input-placeholder {
-  font-size: 11px;
+  font-size: 14px;
   padding-top: 3px;
 }
 
@@ -59,6 +67,6 @@ input::-webkit-input-placeholder {
 }
 
 .login-register{
-  font-size: 11px;
+  font-size: 14px;
   text-align: center;
 }
