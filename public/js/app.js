@@ -2,7 +2,6 @@ angular.module('mean', [
   'ngCookies',
   'ngResource',
   'ui.bootstrap',
-  'ui.route',
   'ngRoute',
   'mean.system',
   'mean.directives'])
