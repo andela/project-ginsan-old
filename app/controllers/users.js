@@ -11,6 +11,7 @@ var validator = require('./validators');
 /**
  * Auth callback
  */
+
 exports.authCallback = function (req, res, next) {
   res.redirect('/chooseavatars');
 };
@@ -48,9 +49,6 @@ exports.signout = function (req, res) {
 /**
  * Session
  */
-exports.session = function (req, res) {
-  res.redirect('/');
-};
 
 
 exports.getAllUser = function (req, res, next) {
@@ -69,16 +67,21 @@ exports.getAllUser = function (req, res, next) {
 
 
 
+
+exports.session = function(req, res) {
+  res.redirect('/');
+};
 /** 
  * Check avatar - Confirm if the user who logged in via passport
  * already has an avatar. If they don't have one, redirect them
  * to our Choose an Avatar page.
  */
-exports.checkAvatar = function (req, res) {
+
+exports.checkAvatar = function(req, res) {
   if (req.user && req.user._id) {
     User.findOne({
-        _id: req.user._id
-      })
+      _id: req.user._id
+    })
       .exec(function (err, user) {
         if (user.avatar !== undefined) {
           res.redirect('/#!/');
@@ -91,6 +94,29 @@ exports.checkAvatar = function (req, res) {
     res.redirect('/');
   }
 
+};
+
+
+exports.login = function (req, res) {
+  passport.authenticate('local', function (err, user, info) {
+    var token;
+    if (err) {
+      res.status(404).json(err);
+      return;
+    }
+    if (user) {
+      token = user.generateJwt();
+      res.status(200);
+      res.json({
+        success: true,
+        message: 'Successfully logged on.',
+        token: token
+      });
+    } else {
+      // If user is not found
+      res.status(401).json(info);
+    }
+  })(req, res);
 };
 
 /**
@@ -129,12 +155,14 @@ exports.create = function (req, res) {
             res.status(401);
             res.json({
               success: false,
+              error:true,
               message: 'Unsuccesful signup',
               token: false
             });
           }
+          var token;
+          token = user.generateJwt();
           req.logIn(user, function (err) {
-            var token = user.generateJwt();
             if (err) return next(err);
             res.status(200);
             res.json({
@@ -149,19 +177,23 @@ exports.create = function (req, res) {
         res.status(401);
         res.json({
           success: false,
+          error:true,
           message: 'There is an existing user with this email',
           token: false
         });
       }
     });
   } else {
-    return res.status(401).json({
+    res.status(400)
+    res.json({
       success: false,
+      error:true,
       message: 'Please fill the required fields',
       token: false
     });
   }
 };
+
 
 exports.deleteUser = function (req, res) {
   console.log(req.params.email);
@@ -187,8 +219,8 @@ exports.avatars = function (req, res) {
   if (req.user && req.user._id && req.body.avatar !== undefined &&
     /\d/.test(req.body.avatar) && avatars[req.body.avatar]) {
     User.findOne({
-        _id: req.user._id
-      })
+      _id: req.user._id
+    })
       .exec(function (err, user) {
         user.avatar = avatars[req.body.avatar];
         user.save();
@@ -202,8 +234,8 @@ exports.addDonation = function (req, res) {
     // Verify that the object contains crowdrise data
     if (req.body.amount && req.body.crowdrise_donation_id && req.body.donor_name) {
       User.findOne({
-          _id: req.user._id
-        })
+        _id: req.user._id
+      })
         .exec(function (err, user) {
           // Confirm that this object hasn't already been entered
           var duplicate = false;
@@ -246,6 +278,7 @@ exports.me = function (req, res) {
 /**
  * Find user by id
  */
+
 exports.user = function (req, res, next, id) {
   User
     .findOne({
