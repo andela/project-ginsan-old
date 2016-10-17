@@ -1,29 +1,22 @@
 /**
  * Module dependencies.
  */
-require('dotenv').config();
 var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
     logger = require('mean-logger'),
     io = require('socket.io');
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
 
 //Load configurations
-//if test env, load example file
+require('dotenv').config();
+
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     config = require('./config/config'),
     auth = require('./config/middlewares/authorization'),
     mongoose = require('mongoose');
 
-console.log(config.db);
-
 //Bootstrap db connection
-
 var dbOptions = {
     server: {
         auto_reconnect: true,
@@ -40,11 +33,12 @@ var dbOptions = {
     },
     autoReconnect: true,
 };
-var db = mongoose.connect(config.db, dbOptions);
+
+//
+mongoose.connect(config.db, dbOptions);
 
 //Bootstrap models
-var models_path = __dirname + '/app/models';
-var walk = function (path) {
+(function walk(path) {
     fs.readdirSync(path).forEach(function (file) {
         var newPath = path + '/' + file;
         var stat = fs.statSync(newPath);
@@ -56,26 +50,19 @@ var walk = function (path) {
             walk(newPath);
         }
     });
-};
-walk(models_path);
+}(__dirname + '/app/models'));
 
 //bootstrap passport config
 require('./config/passport')(passport);
 
+//express settings
 var app = express();
 
-var apiRoutes = express.Router();
-
-//express settings
+//
 require('./config/express')(app, passport, mongoose);
 
 //Bootstrap routes
 require('./config/routes')(app, passport, auth);
-
-//Serve the index file to make html5mode work on the client
-app.use(function(req, res, next) {
-    console.log('request got here');
-});
 
 //Start the app by listening on <port>
 var port = config.port;
@@ -83,12 +70,10 @@ var server = app.listen(port);
 var ioObj = io.listen(server, {
     log: false
 });
+
 //game logic handled here
 require('./config/socket/socket')(ioObj);
 console.log('Express app started on port ' + port);
 
 //Initializing logger
 logger.init(app, passport, mongoose);
-
-//expose app
-exports = module.exports = app;
