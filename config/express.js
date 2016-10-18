@@ -27,10 +27,6 @@ module.exports = function(app, passport, mongoose) {
         app.use(express.logger('dev'));
     }
 
-    //Set views path, template engine and default layout
-    app.set('views', config.root + '/app/views');
-    app.set('view engine', 'jade');
-
     //Enable jsonp
     app.enable('jsonp callback');
 
@@ -41,17 +37,6 @@ module.exports = function(app, passport, mongoose) {
         //bodyParser should be above methodOverride
         app.use(express.bodyParser());
         app.use(express.methodOverride());
-
-        // var sessionStore = new mongoStore({ url: 'config.db', db: 'ginsan-staging' }, function(e) {
-        // 
-        //   app.use(express.session({
-        //     store: sessionStore
-        //   }));
-        //
-        //   app.use(flash())
-        //
-        // // app.listen();
-        // });
 
         //express/mongo session storage
         app.use(express.session({
@@ -75,28 +60,6 @@ module.exports = function(app, passport, mongoose) {
 
         //routes should be at the last
         app.use(app.router);
-
-        //Assume 'not found' in the error msgs is a 404. this is somewhat silly, but valid, you can do whatever you like, set properties, use instanceof etc.
-        app.use(function(err, req, res, next) {
-            //Treat as 404
-            if (~err.message.indexOf('not found')) return next();
-
-            //Log it
-            console.error(err.stack);
-
-            //Error page
-            res.status(500).render('500', {
-                error: err.stack
-            });
-        });
-
-        //Assume 404 since no middleware responded
-        app.use(function(req, res, next) {
-            res.status(404).render('404', {
-                url: req.originalUrl,
-                error: 'Not found'
-            });
-        });
 
     });
 };

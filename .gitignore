@@ -1,6 +1,5 @@
 node_modules
-public/lib
-bower_components
+public/node_modules
 coverage
 .sass-cache/
 .DS_store

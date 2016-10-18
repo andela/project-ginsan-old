@@ -1,6 +1,6 @@
 'use strict';
 var gulp = require('gulp');
-// var exec = require('child_process').exec;
+var exec = require('child_process').exec;
 var gulpSequence = require('run-sequence');
 var bower = require('gulp-bower');
 var filter = require('gulp-filter');
@@ -13,43 +13,13 @@ var nodemon = require('gulp-nodemon');
 var istanbul = require('gulp-istanbul');
 var fs = require('fs');
 var reload = browserSync.reload;
-require('dotenv').config();
 var port = process.env.PORT;
+
+require('dotenv').config();
 
 
 gulp.task('default',function(){
-  gulpSequence(['lint','install'],'sass','serve','watch-changes');
-});
-
-gulp.task('install', function() {
-  return bower('./bower_components')
-    .pipe(gulp.dest('./public/lib'));
-});
-
-gulp.task('lint',function(){
-  var jsFilter = filter(['gruntfile.js', 'public/js/**/*.js',
-   'test/**/*.js', 'app/**/*.js']);
-  return gulp.src('./**/*.js')
-  .pipe(jsFilter)
-  .pipe(jshint());
-});
-
-gulp.task('sass',['clean-css'],function(){
-  return gulp.src('public/css/common.scss')
-  .pipe(sourcemaps.init())
-  .pipe(sass().on('error',sass.logError))
-  .pipe(sourcemaps.write())
-  .pipe(gulp.dest('public/css/'));
-});
-
-gulp.task('clean-css',function(){
-  try{
-    fs.unlinkSync('public/css/common.css');
-  }
-  catch(err){
-    //no file exists continue
-  }
-
+  gulpSequence(['serve','watch-changes']);
 });
 
 gulp.task('pre-test',function(){
@@ -72,13 +42,11 @@ gulp.task('test',['pre-test'],function(){
   });
 });
 
-
-
 gulp.task('nodemon',function(){
   var server = nodemon({
     script: 'server.js',
     ignore: ['README.md', 'node_modules/**', '.DS_Store'],
-    tasks: ['sass','lint']
+    tasks: []
   });
 
   server.on('start',function(){
@@ -104,14 +72,23 @@ gulp.task('serve',['nodemon'],function(){
   });
 });
 
-//finish lint task before reloading
-gulp.task('on-js-change',['lint'],function(done){
+//
+gulp.task('on-js-change-backend',function(done){
   reload();
   done();
 });
 
+//
+gulp.task('on-js-change-frontend',function(done){
+ //Recompile typescript
+  exec('tsc public/**/*.ts', function(err, stdout, stderr) {
+    console.log(stdout);
+    reload();
+    done();
+  });
+});
+
 gulp.task('watch-changes',function(){
-  gulp.watch(['app/views/**','public/views/**','public/css/**'], reload);
-  gulp.watch('public/css/common.scss',['sass']);
-  gulp.watch(['public/js/**', 'app/**/*.js'],['on-js-change']);
+  gulp.watch(['app/**/*.js'],['on-js-change-backend']);
+  gulp.watch(['public/**/*.ts'],['on-js-change-frontend']);
 });

@@ -1,0 +1,1 @@
+{"version":3,"file":"timer.component.js","sourceRoot":"","sources":["timer.component.ts"],"names":[],"mappings":";;;;;;;;;;AAAA,qBAA0B,eAAe,CAAC,CAAA;AAS1C;IAAA;IAA6B,CAAC;IAP9B;QAAC,gBAAS,CAAC;YACP,QAAQ,EAAE,MAAM,CAAC,EAAE;YACnB,QAAQ,EAAE,OAAO;YACjB,WAAW,EAAE,wBAAwB;YACrC,SAAS,EAAE,CAAC,uBAAuB,CAAC;SAEvC,CAAC;;sBAAA;IAC2B,qBAAC;AAAD,CAAC,AAA9B,IAA8B;AAAjB,sBAAc,iBAAG,CAAA"}
