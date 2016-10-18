@@ -9,7 +9,6 @@ var jwtAuth = eJwt({
 
 module.exports = function (app, passport, auth) {
 
-
     //User Routes
     var users = require('../app/controllers/users');
     app.get('/signin', users.signin);
@@ -29,6 +28,11 @@ module.exports = function (app, passport, auth) {
     app.put('/users/friends/:user', jwtAuth, users.saveFriends);
 
     app.delete('/users/delete/:email', users.deleteUser);
+<<<<<<< HEAD
+=======
+
+    app.post('/api/auth/login', users.login);
+>>>>>>> 5321329f188d2005b266aa52cb99328b79c47050
     
     app.post('/users/avatars', users.avatars);
 
@@ -91,6 +95,7 @@ module.exports = function (app, passport, auth) {
     var answers = require('../app/controllers/answers');
     app.get('/answers', answers.all);
     app.get('/answers/:answerId', answers.show);
+    
     // Finish with setting up the answerId param
     app.param('answerId', answers.answer);
 
@@ -98,16 +103,12 @@ module.exports = function (app, passport, auth) {
     var questions = require('../app/controllers/questions');
     app.get('/questions', questions.all);
     app.get('/questions/:questionId', questions.show);
+
     // Finish with setting up the questionId param
     app.param('questionId', questions.question);
 
     // Avatar Routes
     var avatars = require('../app/controllers/avatars');
     app.get('/avatars', avatars.allJSON);
-
-    //Home route
-    var index = require('../app/controllers/index');
-    app.get('/play', index.play);
-    app.get('/', index.render);
-
+    
 };

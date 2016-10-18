@@ -98,12 +98,13 @@ describe('Signup Integration test', function () {
             password: 'password'
         };
 
+
         request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
             .expect(401)
-            .end(function (err, res) {
+            .end(function (err, res) { 
                 if (err) throw err;
 
                 res.body.should.have.property('success');
@@ -116,15 +117,15 @@ describe('Signup Integration test', function () {
     it('should not allow form field to be empty', function (done) {
         var newUser = {
             name: '',
-            email: '',
-            password: ''
+            email: '', 
+            password: '' 
         };
 
         request(baseUrl)
             .post('/api/auth/signup')
             .send(newUser)
             .expect('Content-Type', 'application/json; charset=utf-8')
-            .expect(401)
+            .expect(400)
             .end(function (err, res) {
                 if (err) throw err;
 

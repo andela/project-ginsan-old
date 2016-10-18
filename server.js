@@ -1,57 +1,46 @@
 /**
  * Module dependencies.
  */
- require('dotenv').config();
 var express = require('express'),
     fs = require('fs'),
     passport = require('passport'),
     logger = require('mean-logger'),
     io = require('socket.io');
 
-/**
- * Main application entry file.
- * Please note that the order of loading is important.
- */
 
 //Load configurations
-//if test env, load example file
+require('dotenv').config();
+
 var env = process.env.NODE_ENV = process.env.NODE_ENV || 'development',
     config = require('./config/config'),
     auth = require('./config/middlewares/authorization'),
     mongoose = require('mongoose');
 
-    console.log(config.db);
-
 //Bootstrap db connection
 
-
-var dbOptions =
-{
-    server:
-    {
+var dbOptions = {
+    server: {
         auto_reconnect: true,
-        socketOptions:
-         {
+        socketOptions: {
             keepAlive: 300000,
-              connectTimeoutMS: 30000
-         }
+            connectTimeoutMS: 30000
+        }
     },
-      replset:
-        {
-            socketOptions:
-                {
-                    keepAlive: 300000,
-                      connectTimeoutMS : 30000
-                }
-        },
-      autoReconnect: true,
- };
-var db = mongoose.connect(config.db,dbOptions);
+    replset: {
+        socketOptions: {
+            keepAlive: 300000,
+            connectTimeoutMS: 30000
+        }
+    },
+    autoReconnect: true,
+};
+
+//
+mongoose.connect(config.db, dbOptions);
 
 //Bootstrap models
-var models_path = __dirname + '/app/models';
-var walk = function(path) {
-    fs.readdirSync(path).forEach(function(file) {
+(function walk(path) {
+    fs.readdirSync(path).forEach(function (file) {
         var newPath = path + '/' + file;
         var stat = fs.statSync(newPath);
         if (stat.isFile()) {
@@ -62,21 +51,15 @@ var walk = function(path) {
             walk(newPath);
         }
     });
-};
-walk(models_path);
+}(__dirname + '/app/models'));
 
 //bootstrap passport config
 require('./config/passport')(passport);
 
+//express settings
 var app = express();
 
-app.use(function(req, res, next){
-    next();
-});
-
-
-var apiRoutes = express.Router();
-//express settings
+//
 require('./config/express')(app, passport, mongoose);
 
 //Bootstrap routes
@@ -85,13 +68,13 @@ require('./config/routes')(app, passport, auth);
 //Start the app by listening on <port>
 var port = config.port;
 var server = app.listen(port);
-var ioObj = io.listen(server, { log: false });
+var ioObj = io.listen(server, {
+    log: false
+});
+
 //game logic handled here
 require('./config/socket/socket')(ioObj);
 console.log('Express app started on port ' + port);
 
 //Initializing logger
 logger.init(app, passport, mongoose);
-
-//expose app
-exports = module.exports = app;

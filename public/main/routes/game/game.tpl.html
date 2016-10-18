@@ -1,0 +1,59 @@
+<div class="row">
+    <div class="col s3">
+        <div class="row">
+            <div class="col s12 card white darken-4" style="background-color:#ccc; margin-bottom:1em">
+                <timer></timer>
+            </div>
+            <div class="col s12 card white darken-4" style="background-color:#ccc; margin-bottom:1em">
+                <div class="row" style="padding-top:.4em; margin-bottom:0">
+                    <div class="col s12" style="background-color:#bbb; height:9em;margin-bottom:1em;padding-top:.5em">
+                        <user-details [details]="users[0]"></user-details>
+                    </div>
+                    <div class="col s12" style="background-color:#ddd; height:18em; margin-bottom:1em" >
+                        <answers-deck [cards]="answerCards" (card)="answerSelected($event)"></answers-deck>
+                    </div>
+                </div>
+            </div>
+        </div>
+          
+    </div>
+
+    <div class="col s6">
+        <div class="row">
+            <div class="col s12 card white">
+                <question-card 
+                   (select)="selectAQuestion()"
+                   [question]="question">
+                </question-card>
+            </div>
+
+            <div class="col s12 card white darken-4" style="padding:10px;background-color:#ccc; height:29.5em; margin-bottom:1em;overflow:auto">
+                <floor [card]="recentlyAddedAnswer"></floor>
+            </div>
+        </div>
+    </div>
+
+    <div class="col s3" style="background-color:#ccc; height:51.5em; margin-bottom:1em;padding:0">
+        <div class="row" style="padding:0">
+            <div class="col s12" style="background-color:#ccc; height:4em; padding:0">
+
+                <div class="row" style="margin-bottom:1em; text-align:center">
+                    <div class="col s6" style="background-color:#ccc; padding:1em;font-size:1.3em;  border-right:1px solid #fff">Players</div>
+                    <div class="col s6" style="background-color:#eee; padding:1em;font-size:1.3em;">Chat</div>
+                </div>
+
+            </div>
+
+            <div class="col s12" style="background-color:#ccc; height:18em; margin-bottom:1em">
+                <div *ngFor="let user of users"
+                   class="row" style="padding-top:.4em; margin-bottom:0">
+                    <div *ngIf="!user.admin" class="col s12" style="background-color:#bbb; height:9em;margin-bottom:1em;padding-top:.5em">
+                        <user-details [details]="user"></user-details>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+          
