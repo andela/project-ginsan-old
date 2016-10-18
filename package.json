@@ -62,6 +62,7 @@
     "socket.io": "~0.9.16",
     "socket.io-client": "~0.9.16",
     "supertest": "~0.8.0",
+    "supertest-as-promised": "^4.0.0",
     "travis-cov": "^0.2.5",
     "underscore": "~1.5.2",
     "view-helpers": "~0.1.3"

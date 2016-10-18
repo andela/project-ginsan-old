@@ -53,7 +53,7 @@ module.exports = function(passport) {
                     return done(null, false, {
                         success:false,
                         error:true,
-                        message: 'Unknown user',
+                        message: 'Email or password is incorrect.',
                         token:false
                     });
                 }
@@ -61,7 +61,7 @@ module.exports = function(passport) {
                     return done(null, false, {
                         success:false,
                         error:true,
-                        message: 'Invalid password',
+                        message: 'Email or password is incorrect',
                         token:false
                     });
                 }

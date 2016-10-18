@@ -2,11 +2,12 @@
  * Module dependencies.
  */
 var mongoose = require('mongoose'),
-  User = mongoose.model('User');
-var avatars = require('./avatars').all();
-var jwt = require('jsonwebtoken');
-var passport = require('passport');
-var validator = require('./validators');
+    User = mongoose.model('User'),
+    Notification = mongoose.model('Notification');
+    avatars = require('./avatars').all(),
+    jwt = require('jsonwebtoken'),
+    passport = require('passport'),
+    validator = require('./validators');
 
 /**
  * Auth callback
@@ -166,6 +167,7 @@ exports.create = function (req, res) {
             if (err) return next(err);
             res.status(200);
             res.json({
+              userId:user._id,
               success: true,
               message: 'Successful signup',
               token: token
@@ -192,6 +194,70 @@ exports.create = function (req, res) {
       token: false
     });
   }
+};
+
+
+exports.saveFriends = function (req, res) {
+  var userId = mongoose.Types.ObjectId(req.params.user);
+  var oldFriendsList = [];
+  if (req.params.user && typeof req.body.friends === 'object') {
+    User.findOne({ _id: userId }, function (err, user) {
+      if (err) throw err;
+      if (!user) {
+        res.status(400)
+        res.json({
+          status: false,
+          error: true,
+          message: "User not found"
+        });
+      }
+      for (var i = 0; i < req.body.friends.length; i++) {
+        if (user.friends.indexOf(req.body.friends[i]) < 0) {
+          user.friends.push(req.body.friends[i]);
+          user.save();
+          res.status(200);
+          res.json({
+            status: true,
+            error: false,
+            message: "Successfully updated"
+          })
+        }
+      }
+    });
+  }
+};
+
+exports.sendUserInvites = function (req, res) {
+  var fromId = mongoose.Types.ObjectId(req.params.fromUser);
+  var toId = mongoose.Types.ObjectId(req.params.to);
+  var link = req.body.link;
+  var userName;
+  var message = ' ';
+  //find the name of who sent it
+  User.findOne({ _id: fromId }).exec().then(function (user) {
+    userName = user.name;
+    console.log(userName);
+    message = userName + " sent a game invite to you.";
+    // Send notification
+    var notify = new Notification({ forUser: toId, message: message, link: req.body.link });
+    return notify.save();
+  }).then(function (success) {
+    console.log('got ere')
+    res.json({
+      status: true,
+      error: false,
+      message: "Invite sent successfully"
+    });
+  }, function (err) {
+    console.log(err, 'this is an error')
+    res.status(500);
+    return res.json({
+      status:false,
+      error:true,
+      message:"Internal server error"
+    });
+  });
+
 };
 
 
