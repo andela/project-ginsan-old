@@ -1,16 +1,18 @@
-    import { Component } from '@angular/core';
+     import { Component } from '@angular/core';
     @Component({
       selector: 'landing-page',
-      template: 
+      template:
       `
-         <div class="ui large top fixedmenu" >
-            <div class="ui container">
-              <a class="header item" routerLinkActive="active" routerLink="/home">Project ginsan</a>
-              <a class="header item" routerLinkActive="active" routerLink="/auth">auth route</a>
-              <a class="header item" routerLinkActive="active" routerLink="/dashboard">dashboard route</a>
-              <a class="header item" routerLinkActive="active" routerLink="/game">game screen</a>
-            </div>
-         </div>
+        <nav class="black">
+          <div class="nav-wrapper">
+              <a href="#!" class="brand-logo">cfh.io</a>
+              <ul class="right hide-on-med-and-down">
+                  <li><a class="header item" routerLinkActive="active" routerLink="/home/">Home</a></li>
+                  <li><a class="header item" routerLinkActive="active" routerLink="/auth/signin">Login</a></li>
+                  <li><a class="header item" routerLinkActive="active" routerLink="/auth/signup">Signup</a></li>
+              </ul>
+          </div>
+      </nav>
 
         <div class="ui main text container" style="padding-top:15em; height:100%">
           <div class="ui text container">
@@ -50,6 +52,8 @@
             </div>
             </div>
         </div>
+
+        <router-outlet></router-outlet>
       `
     })
     export class LandingPage {
