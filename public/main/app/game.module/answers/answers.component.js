@@ -42,8 +42,8 @@ var AnswersComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'answers-deck',
-            templateUrl: './answers.tpl.html',
-            styleUrls: ['./answers.tpl.css']
+            templateUrl: './answers.component.html',
+            styleUrls: ['./answers.component.css']
         })
     ], AnswersComponent);
     return AnswersComponent;

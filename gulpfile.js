@@ -22,11 +22,7 @@ gulp.task('default',function(){
 });
 
 gulp.task('lint',function(){
-  var jsFilter = filter(['gruntfile.js',
-   'test/**/*.js', 'app/**/*.js']);
-  return gulp.src('./**/*.js')
-  .pipe(jsFilter)
-  .pipe(jshint());
+  //Configure linter here
 });
 
 gulp.task('pre-test',function(){

@@ -3,9 +3,8 @@ import { Component, Input, OnChanges, SimpleChange } from '@angular/core';
 @Component({
     moduleId: module.id,
     selector: 'floor',
-    templateUrl: './floor.tpl.html',
-    styleUrls: ['./floor.tpl.css']
-
+    templateUrl: './floor.component.html',
+    styleUrls: ['./floor.component.css']
 })
 export class FloorComponent implements OnChanges {
     @Input() card: string;

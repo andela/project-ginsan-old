@@ -29,8 +29,8 @@ var FloorComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'floor',
-            templateUrl: './floor.tpl.html',
-            styleUrls: ['./floor.tpl.css']
+            templateUrl: './floor.component.html',
+            styleUrls: ['./floor.component.css']
         })
     ], FloorComponent);
     return FloorComponent;

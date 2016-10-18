@@ -13,8 +13,8 @@ var TimerComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'timer',
-            templateUrl: './timer.tpl.html',
-            styleUrls: ['./timer.tpl.css']
+            templateUrl: './timer.component.html',
+            styleUrls: ['./timer.component.css']
         })
     ], TimerComponent);
     return TimerComponent;

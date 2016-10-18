@@ -46,8 +46,8 @@ var QuestionComponent = (function () {
         core_1.Component({
             moduleId: module.id,
             selector: 'question-card',
-            templateUrl: './question.tpl.html',
-            styleUrls: ['./question.tpl.css']
+            templateUrl: './question.component.html',
+            styleUrls: ['./question.component.css']
         })
     ], QuestionComponent);
     return QuestionComponent;

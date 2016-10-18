@@ -3,9 +3,8 @@ import { Component , Input , Output , EventEmitter } from '@angular/core';
 @Component({ 
     moduleId: module.id,
     selector: 'answers-deck',
-    templateUrl: './answers.tpl.html',
-    styleUrls: ['./answers.tpl.css']
-
+    templateUrl: './answers.component.html',
+    styleUrls: ['./answers.component.css']
 })
 export class AnswersComponent {
     @Input() cards;

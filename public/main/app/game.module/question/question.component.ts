@@ -3,8 +3,8 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChange } from 
 @Component({
     moduleId: module.id,
     selector: 'question-card',
-    templateUrl: './question.tpl.html',
-    styleUrls: ['./question.tpl.css']
+    templateUrl: './question.component.html',
+    styleUrls: ['./question.component.css']
 
 })
 export class QuestionComponent {
