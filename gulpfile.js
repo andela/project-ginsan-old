@@ -13,16 +13,13 @@ var nodemon = require('gulp-nodemon');
 var istanbul = require('gulp-istanbul');
 var fs = require('fs');
 var reload = browserSync.reload;
-require('dotenv').config();
 var port = process.env.PORT;
+
+require('dotenv').config();
 
 
 gulp.task('default',function(){
-  gulpSequence(['lint'] ,'serve','watch-changes');
-});
-
-gulp.task('lint',function(){
-  //Configure linter here
+  gulpSequence(['serve','watch-changes']);
 });
 
 gulp.task('pre-test',function(){
@@ -49,7 +46,7 @@ gulp.task('nodemon',function(){
   var server = nodemon({
     script: 'server.js',
     ignore: ['README.md', 'node_modules/**', '.DS_Store'],
-    tasks: ['lint']
+    tasks: []
   });
 
   server.on('start',function(){
@@ -76,7 +73,7 @@ gulp.task('serve',['nodemon'],function(){
 });
 
 //
-gulp.task('on-js-change-backend',['lint'],function(done){
+gulp.task('on-js-change-backend',function(done){
   reload();
   done();
 });
