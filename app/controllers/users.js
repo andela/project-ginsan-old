@@ -7,10 +7,8 @@ var avatars = require('./avatars').all();
 var jwt = require('jsonwebtoken');
 var passport = require('passport');
 var validator = require('./validators');
-<<<<<<< HEAD
-=======
 
->>>>>>> 5321329f188d2005b266aa52cb99328b79c47050
+
 /**
  * Auth callback
  */
@@ -199,10 +197,7 @@ exports.create = function (req, res) {
 };
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> 5321329f188d2005b266aa52cb99328b79c47050
 exports.deleteUser = function (req, res) {
   User.findOneAndRemove({
     email: req.params.email

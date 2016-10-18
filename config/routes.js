@@ -28,11 +28,9 @@ module.exports = function (app, passport, auth) {
     app.put('/users/friends/:user', jwtAuth, users.saveFriends);
 
     app.delete('/users/delete/:email', users.deleteUser);
-<<<<<<< HEAD
-=======
+
 
     app.post('/api/auth/login', users.login);
->>>>>>> 5321329f188d2005b266aa52cb99328b79c47050
     
     app.post('/users/avatars', users.avatars);
 

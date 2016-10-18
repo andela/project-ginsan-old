@@ -38,22 +38,6 @@ module.exports = function(app, passport, mongoose) {
         app.use(express.bodyParser());
         app.use(express.methodOverride());
 
-<<<<<<< HEAD
-
-        // var sessionStore = new mongoStore({ url: 'config.db', db: 'ginsan-staging' }, function(e) {
-        // 
-        //   app.use(express.session({
-        //     store: sessionStore
-        //   }));
-        //
-        //   app.use(flash())
-        //
-        // // app.listen();
-        // });
-
-=======
->>>>>>> 5321329f188d2005b266aa52cb99328b79c47050
-        //express/mongo session storage
         app.use(express.session({
             secret: 'MEAN',
             store: new mongoStore({
