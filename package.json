@@ -14,8 +14,7 @@
   },
   "scripts": {
     "start": "gulp",
-    "test": "gulp test",
-    "postinstall": "gulp install"
+    "test": "gulp test"
   },
   "dependencies": {
     "async": "~0.2.9",

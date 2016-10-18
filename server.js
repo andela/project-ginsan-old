@@ -3,6 +3,7 @@
  */
 var express = require('express'),
     fs = require('fs'),
+    path = require('path'),
     passport = require('passport'),
     logger = require('mean-logger'),
     io = require('socket.io');
@@ -63,6 +64,20 @@ require('./config/express')(app, passport, mongoose);
 
 //Bootstrap routes
 require('./config/routes')(app, passport, auth);
+
+//Server contract that supports angular2 html5mode
+app.use(function(req  , res, next) {
+    var filePath = path.join(__dirname, 'public/index.html');
+    var stat = fs.statSync(filePath);
+
+    res.writeHead(200, {
+        'Content-Type': 'text/html',
+        'Content-Length': stat.size
+    });
+
+    var readStream = fs.createReadStream(filePath);
+    readStream.pipe(res);
+});
 
 //Start the app by listening on <port>
 var port = config.port;
