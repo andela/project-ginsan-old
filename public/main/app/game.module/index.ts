@@ -1,3 +1,4 @@
+//This is a barrel component whose purpose is to aggregate components and re-export them
 import { NgModule }             from '@angular/core';
 import { BrowserModule }        from '@angular/platform-browser';
 

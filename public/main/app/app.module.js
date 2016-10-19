@@ -5,9 +5,6 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 //Core modules imports
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
@@ -17,6 +14,9 @@ var index_1 = require('./game.module/index');
 //custom imports for components
 var app_component_1 = require('./app.component');
 //custom imports for routes components
+var landingpage_1 = require('../routes/home/landingpage');
+var dashboard_component_1 = require('../routes/dashboard/dashboard.component');
+var auth_component_1 = require('../routes/auth/auth.component');
 var game_component_1 = require('../routes/game/game.component');
 var AppModule = (function () {
     function AppModule() {
@@ -30,13 +30,14 @@ var AppModule = (function () {
             ],
             declarations: [
                 app_component_1.AppComponent,
-                game_component_1.GameComponent
+                game_component_1.GameComponent,
+                landingpage_1.LandingPage,
+                dashboard_component_1.DashboardComponent,
+                auth_component_1.AuthComponent
             ],
             bootstrap: [app_component_1.AppComponent]
-        }), 
-        __metadata('design:paramtypes', [])
+        })
     ], AppModule);
     return AppModule;
 }());
 exports.AppModule = AppModule;
-//# sourceMappingURL=app.module.js.map
