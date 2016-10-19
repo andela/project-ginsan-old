@@ -9,20 +9,31 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var auth_service_1 = require("../../../app/shared/services/auth/auth.service");
 var SignupComponent = (function () {
-    function SignupComponent() {
+    function SignupComponent(authService, router) {
+        this.authService = authService;
+        this.router = router;
     }
+    SignupComponent.prototype.onSubmit = function (e) {
+        // e.preventDefault();
+        // console.log(this.sname.value, 'values')
+        // this.authService.signUp(this.name, this.email, this.password).subscribe((result) => {
+        //   if (result) {
+        //     this.router.navigate(['']);
+        //   }
+        // })
+    };
     return SignupComponent;
 }());
 SignupComponent = __decorate([
     core_1.Component({
         selector: 'signup',
-        styles: [
-            "\n           .grid {\n              height: 100%;\n            }\n            background-color: #DADADA;\n            .image {\n               margin-top: -100px;\n            }\n            .column {\n               max-width: 450px;\n            }\n\n            .formStyle{\n              margin-top: 60px;\n              min-width: 35%;\n            }\n\n            .logo{\n              margin-left:20px;\n            }\n        "
-        ],
-        template: "\n    <nav class=\"blue darken-4\">\n      <div class=\"nav-wrapper\">\n          <a href=\"/home\" class=\"brand-logo logo\">cfh.io</a>\n          <ul class=\"right hide-on-med-and-down\">\n              <li><a class=\"header item\" routerLinkActive=\"active\" routerLink=\"/home/\">Home</a></li>\n              <li><a class=\"header item\" routerLinkActive=\"active\" routerLink=\"/auth/signin\">Login</a></li>\n              <li class=\"active\"><a class=\"header item\" routerLinkActive=\"active\" routerLink=\"/auth/signup\">Signup</a></li>\n          </ul>\n      </div>\n  </nav>\n    <div class=\"valign-wrapper\">\n\n                <div class=\"z-depth-1 grey lighten-4 row valign formStyle\">\n                    <h5 class=\"blue-text center-align\">Register</h5>\n                    <form class=\"col s12\" method=\"post\">\n\n                        <div class='row'>\n                            <div class='input-field col s12'>\n                                <input class='validate' type='email' name='email' id='email' />\n                                <label for='email'>Enter Your Email</label>\n                            </div>\n                        </div>\n\n                        <div class='row'>\n                            <div class='input-field col s12'>\n                                <input class='validate' type='password' name='password' id='password' />\n                                <label for='password'>Enter Your Password</label>\n                            </div>\n                        </div>\n\n                        <div class='row'>\n                            <div class='input-field col s12'>\n                                <input class='validate' type='password' name='password' id='password' />\n                                <label for='password'>Re-enter Your Password</label>\n                            </div>\n                        </div>\n\n                        <br />\n\n                            <div class='row'>\n                                <button type='submit' name='btn_login' class='col s12 btn btn-large waves-effect blue'>Register</button>\n                            </div>\n\n                    </form>\n                    <h6 class=\"center-align\">Already a member?  <a href=\"#!\">Signin</a></h6>\n                </div>\n\n\n            </div>\n\n    "
+        templateUrl: 'signup.component.html',
+        styleUrls: ['signup.component.css']
     }),
-    __metadata("design:paramtypes", [])
+    __metadata("design:paramtypes", [auth_service_1.AuthService, router_1.Router])
 ], SignupComponent);
 exports.SignupComponent = SignupComponent;
 //# sourceMappingURL=signup.component.js.map

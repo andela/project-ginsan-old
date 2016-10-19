@@ -8,6 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 //Core modules imports
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var http_1 = require('@angular/http');
+var forms_1 = require('@angular/forms');
 //custom imports for modules
 var routes_1 = require('../routes/routes');
 var index_1 = require('./game.module/index');
@@ -15,6 +17,8 @@ var index_1 = require('./game.module/index');
 var app_component_1 = require('./app.component');
 //custom imports for routes components
 var game_component_1 = require('../routes/game/game.component');
+//imports for custom services
+var auth_service_1 = require('./shared/services/auth/auth.service');
 var AppModule = (function () {
     function AppModule() {
     }
@@ -22,6 +26,8 @@ var AppModule = (function () {
         core_1.NgModule({
             imports: [
                 platform_browser_1.BrowserModule,
+                http_1.HttpModule,
+                forms_1.FormsModule,
                 routes_1.MyRouterModule,
                 index_1.GameModule
             ],
@@ -29,6 +35,7 @@ var AppModule = (function () {
                 app_component_1.AppComponent,
                 game_component_1.GameComponent
             ],
+            providers: [auth_service_1.AuthService],
             bootstrap: [app_component_1.AppComponent]
         })
     ], AppModule);
