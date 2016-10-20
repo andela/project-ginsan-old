@@ -1,5 +1,6 @@
 //
 import { NgModule }                from '@angular/core';
+import { FormsModule }   from '@angular/forms';
 import { RouterModule , Routes }   from '@angular/router';
 
 //custom imports
@@ -9,6 +10,9 @@ import { AuthComponent }           from './auth/auth.component';
 import { SigninComponent }         from './auth/signin/signin.component';
 import { SignupComponent }         from './auth/signup/signup.component';
 import { GameComponent }           from './game/game.component';
+
+//imports for custom services
+import { AuthService }  from '../app/shared/services/auth/auth.service';
 
 const routes:Routes = [
     {
@@ -51,10 +55,13 @@ const routes:Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes)],
+    imports: [RouterModule.forRoot(routes), FormsModule],
     exports: [
         RouterModule
     ],
+
+    providers: [AuthService],
+
     declarations: [
         LandingPage, DashboardComponent, AuthComponent, SigninComponent, SignupComponent
     ]

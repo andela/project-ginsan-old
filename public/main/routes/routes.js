@@ -7,6 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 //
 var core_1 = require('@angular/core');
+var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
 //custom imports
 var landingpage_1 = require('./home/landingpage');
@@ -15,6 +16,8 @@ var auth_component_1 = require('./auth/auth.component');
 var signin_component_1 = require('./auth/signin/signin.component');
 var signup_component_1 = require('./auth/signup/signup.component');
 var game_component_1 = require('./game/game.component');
+//imports for custom services
+var auth_service_1 = require('../app/shared/services/auth/auth.service');
 var routes = [
     {
         path: 'home',
@@ -58,10 +61,11 @@ var MyRouterModule = (function () {
     }
     MyRouterModule = __decorate([
         core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes)],
+            imports: [router_1.RouterModule.forRoot(routes), forms_1.FormsModule],
             exports: [
                 router_1.RouterModule
             ],
+            providers: [auth_service_1.AuthService],
             declarations: [
                 landingpage_1.LandingPage, dashboard_component_1.DashboardComponent, auth_component_1.AuthComponent, signin_component_1.SigninComponent, signup_component_1.SignupComponent
             ]

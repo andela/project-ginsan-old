@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { FormsModule } from '@angular/forms';
 
 import { AuthService } from '../../../app/shared/services/auth/auth.service';
 
 @Component({
+    moduleId: module.id,
     selector: 'signup',
     templateUrl: 'signup.component.html',
     styleUrls: ['signup.component.css']
 })
 
 export class SignupComponent {
-  username: String;
-  constructor(private authService: AuthService, private router:Router) {}
+  name: String;
+  // constructor(private authService: AuthService, private router:Router) {}
 
   onSubmit(e) {
     // e.preventDefault();

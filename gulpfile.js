@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 var gulp = require('gulp');
 var exec = require('child_process').exec;
 var gulpSequence = require('run-sequence');
