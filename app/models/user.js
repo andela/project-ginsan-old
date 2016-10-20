@@ -17,6 +17,8 @@ var UserSchema = new Schema({
     email: String,
     username: String,
     provider: String,
+    friends:[],
+    notifications:[],
     avatar: String,
     premium: Number, // null or 0 for non-donors, 1 for everyone else (for now)
     donations: [],
@@ -129,4 +131,4 @@ UserSchema.methods = {
     }
 };
 
-mongoose.model('User', UserSchema);
+module.export = mongoose.model('User', UserSchema);

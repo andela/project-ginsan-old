@@ -25,6 +25,7 @@ module.exports = function (app, passport, auth) {
 
     //Setting up the users api
     app.post('/api/auth/signup', users.create);
+    app.put('/users/friends/:user', jwtAuth, users.saveFriends);
 
 
     /*
@@ -37,6 +38,7 @@ module.exports = function (app, passport, auth) {
     
     
     app.delete('/users/delete/:email', users.deleteUser);
+
 
     app.post('/api/auth/login', users.login);
     
