@@ -2,6 +2,7 @@
 import { NgModule }                from '@angular/core';
 import { FormsModule }   from '@angular/forms';
 import { RouterModule , Routes }   from '@angular/router';
+import { HttpModule } from '@angular/http';
 
 //custom imports
 import { LandingPage }             from './home/landingpage';
@@ -55,15 +56,17 @@ const routes:Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forRoot(routes), FormsModule],
+    imports: [RouterModule.forRoot(routes), FormsModule, HttpModule],
     exports: [
-        RouterModule
+        RouterModule,
     ],
 
     providers: [AuthService],
 
-    declarations: [
+    declarations: [ 
         LandingPage, DashboardComponent, AuthComponent, SigninComponent, SignupComponent
     ]
 })
-export class MyRouterModule {}
+export class MyRouterModule {
+    // constructor(private authService:AuthService) {}
+}

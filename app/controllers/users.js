@@ -108,6 +108,7 @@ exports.login = function (req, res) {
       token = user.generateJwt();
       res.status(200);
       res.json({
+        userId:user._id,
         success: true,
         message: 'Successfully logged on.',
         token: token
@@ -166,6 +167,7 @@ exports.create = function (req, res) {
             if (err) return next(err);
             res.status(200);
             res.json({
+              userId:user._id,
               success: true,
               message: 'Successful signup',
               token: token

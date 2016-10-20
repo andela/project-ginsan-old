@@ -1,36 +1,26 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
+import { Injectable, Inject } from '@angular/core';
+import { Http, Headers, RequestOptions } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
 
 @Injectable()
 export class AuthService {
   private signedIn = false;
-
-  constructor(private http: Http){
+  _http;
+  constructor(@Inject (Http) http: Http){
     this.signedIn = !!localStorage.getItem('auth_token')
+    this._http = http;
   }
 
   signUp(name, email, password) {
     console.log(email, name, password, 'info?')
-    let headers = new Headers();
-    headers.append('Content-type', 'application/json');
+    let headers = new Headers({'Content-type': 'application/json'});
+    let options = new RequestOptions({headers:headers});
+    let data = JSON.stringify({ name:name, email:email, password:password })
 
-    return this.http
-      .post(
-        '/api/auth/signup',
-        JSON.stringify({ name, email, password }),
-        { headers: headers }
-      )
-
-      .map(res => res.json())
-      .map((res) => {
-        if(res.success) {
-          localStorage.setItem('auth_token', 'Bearer ' + res.auth_token);
-          this.signedIn = true;
-        }
-
-
-        return res.success;
-      });
+    return this._http
+      .post('/api/auth/signup', data ,options
+      ).map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   signIn(email, password){

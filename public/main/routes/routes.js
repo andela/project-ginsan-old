@@ -9,6 +9,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var core_1 = require('@angular/core');
 var forms_1 = require('@angular/forms');
 var router_1 = require('@angular/router');
+var http_1 = require('@angular/http');
 //custom imports
 var landingpage_1 = require('./home/landingpage');
 var dashboard_component_1 = require('./dashboard/dashboard.component');
@@ -61,9 +62,9 @@ var MyRouterModule = (function () {
     }
     MyRouterModule = __decorate([
         core_1.NgModule({
-            imports: [router_1.RouterModule.forRoot(routes), forms_1.FormsModule],
+            imports: [router_1.RouterModule.forRoot(routes), forms_1.FormsModule, http_1.HttpModule],
             exports: [
-                router_1.RouterModule
+                router_1.RouterModule,
             ],
             providers: [auth_service_1.AuthService],
             declarations: [

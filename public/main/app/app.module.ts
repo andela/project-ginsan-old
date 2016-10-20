@@ -36,4 +36,5 @@ import { AuthService }  from './shared/services/auth/auth.service';
     bootstrap: [AppComponent]
 })
 //
-export class AppModule { }
+export class AppModule { 
+}
