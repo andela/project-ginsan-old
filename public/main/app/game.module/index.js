@@ -5,22 +5,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
+var http_1 = require('@angular/http');
 var timer_component_1 = require('./timer/timer.component');
 var question_component_1 = require('./question/question.component');
 var answers_component_1 = require('./answers/answers.component');
 var user_details_1 = require('./user/user-details');
 var floor_component_1 = require('./floor/floor.component');
+var invites_component_1 = require('./invites/invites.component');
+var invitation_service_1 = require('./../shared/services/invitation.service');
+var forms_1 = require('@angular/forms');
 var GameModule = (function () {
     function GameModule() {
     }
     GameModule = __decorate([
         core_1.NgModule({
-            imports: [platform_browser_1.BrowserModule],
+            imports: [platform_browser_1.BrowserModule, forms_1.FormsModule, http_1.HttpModule],
             exports: [
                 timer_component_1.TimerComponent,
                 question_component_1.QuestionComponent,
@@ -31,14 +32,14 @@ var GameModule = (function () {
             declarations: [
                 timer_component_1.TimerComponent,
                 question_component_1.QuestionComponent,
+                invites_component_1.InvitesComponent,
                 answers_component_1.AnswersComponent,
                 user_details_1.UserDetailsComponent,
                 floor_component_1.FloorComponent
-            ]
-        }), 
-        __metadata('design:paramtypes', [])
+            ],
+            providers: [invitation_service_1.InvitationService]
+        })
     ], GameModule);
     return GameModule;
 }());
 exports.GameModule = GameModule;
-//# sourceMappingURL=index.js.map

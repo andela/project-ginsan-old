@@ -1,0 +1,65 @@
+.fit-image {
+    width:140px;
+    height:140px;
+}
+
+.fit-modal {
+    width:25% !important;
+}
+
+.modal-height {
+    height:400px;
+    min-height: 800px !important;
+    overflow:600px !important;
+}
+
+.list-friends {
+    width:100%;
+    height:auto;
+    border:2px solid #eee;
+    overflow:100%;
+}
+
+.list-friends li {
+    padding-top:10px;
+    border-bottom: 1px solid #eee;
+    height:40px;
+    text-align:left !important;
+}
+
+.list-friends li span{
+    font-size:1em;
+    font-weight:bold;
+}
+
+
+.input-box {
+    border:2px solid #26a69a !important;
+    padding-left:6px;
+    margin-left:-6px;
+    text-align: center;
+    background:#26a69a;
+    color:#fff;
+}
+
+.input-box:focus {
+    border-bottom:3px solid #fff !important;
+    text-align: center;
+}
+
+.input-box::-webkit-input-placeholder {
+   /*color: red;*/
+   text-align:center;
+}
+
+.input-box:-moz-placeholder { /* Firefox 18- */
+   /*color: red;  */
+}
+
+.input-box::-moz-placeholder {  /* Firefox 19+ */
+   /*color: red;  */
+}
+
+.input-box:-ms-input-placeholder {  
+   /*color: red;  */
+}

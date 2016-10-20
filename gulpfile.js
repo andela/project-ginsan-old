@@ -1,5 +1,6 @@
 'use strict';
 var gulp = require('gulp');
+require('dotenv').config();
 var exec = require('child_process').exec;
 var gulpSequence = require('run-sequence');
 var bower = require('gulp-bower');
@@ -14,8 +15,6 @@ var istanbul = require('gulp-istanbul');
 var fs = require('fs');
 var reload = browserSync.reload;
 var port = process.env.PORT;
-
-require('dotenv').config();
 
 
 gulp.task('default',function(){
@@ -64,8 +63,8 @@ gulp.task('nodemon',function(){
 
 gulp.task('serve',['nodemon'],function(){
   browserSync({
-    proxy: 'localhost:'+port,
-    port: 5000,
+    proxy: 'localhost:'+process.env.PORT,
+    port: 5002,
     ui: {
       port: 5001
     }

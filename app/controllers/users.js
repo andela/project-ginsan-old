@@ -52,20 +52,33 @@ exports.signout = function (req, res) {
  */
 
 
-exports.getAllUser = function (req, res, next) {
-  User.find({}, function (err, user) {
-    if (err) {
-      throw err;
-    }
-
-    if (user) {
-      res.json(user);
-    } else {
+exports.getAllUser = function (req, res) {
+  console.log(req.query.name);
+  var query = '/^'+ req.query.name +'/i';
+  User.find({name:eval(query)}).exec().then(function (users) {
+    console.log(users);
+    if(!users) {
       return res.send('There are no users');
     }
+    if(users.length <= 0) {
+      return res.status(400).json({
+        status:false,
+        message:"No users"
+      });
+    }
+    var editedUsers = users.map(function(user){
+      return {
+        id: user._id,
+        name:user.name,
+        email: user.email
+      }
+    });
+    return res.status(200).json(editedUsers);
+  }).catch(function (err) {
+    return res.send("Opps!!, something went wrong");
   });
 };
-
+    
 
 
 
@@ -204,28 +217,54 @@ exports.saveFriends = function (req, res) {
     User.findOne({ _id: userId }, function (err, user) {
       if (err) throw err;
       if (!user) {
-        res.status(400)
-        res.json({
+        
+        return res.status(400).res.json({
           status: false,
           error: true,
           message: "User not found"
         });
       }
+      //check for duplicates
       for (var i = 0; i < req.body.friends.length; i++) {
         if (user.friends.indexOf(req.body.friends[i]) < 0) {
           user.friends.push(req.body.friends[i]);
           user.save();
-          res.status(200);
-          res.json({
-            status: true,
-            error: false,
-            message: "Successfully updated"
-          })
         }
-      }
+      };
+      return res.status(200).json({
+        status: true,
+        error: false,
+        message: "Successfully added"
+      });
+
+
     });
   }
+  return res.status(400).res.json({
+    status:false,
+    error:true,
+    message:'Send the required parameters'
+  });
 };
+
+
+/**
+ * Get all friends
+ */
+
+// exports.getFriends = function (req, res) {
+//   if(!req.params.user) {
+//     return res.status(400).json({
+//       status:false,
+//       error:true,
+//       message:"Pass in the user id"
+//     });
+//   }
+//   var friends = [];
+//   var userId = mongoose.Types.ObjectId(req.params.user);
+//   User
+  
+// }
 
 exports.sendUserInvites = function (req, res) {
   var fromId = mongoose.Types.ObjectId(req.params.fromUser);
@@ -263,17 +302,14 @@ exports.sendUserInvites = function (req, res) {
 
 exports.deleteUser = function (req, res) {
   console.log(req.params.email);
-  User.findOneAndRemove({email:req.params.email}, function (err, user) {
+  User.findOneAndRemove({ email: req.params.email }, function (err, user) {
     if(err) throw err;
-    user.remove(function (err) {
-      if(err) throw err;
-
-      res.status(202).json({
+    res.status(202);
+    return res.json({
         success:true,
         message:'User successfully deleted',
         token:false
       });
-    });
   });
 };
 

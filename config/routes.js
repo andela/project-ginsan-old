@@ -32,7 +32,10 @@ module.exports = function (app, passport, auth) {
     */
     app.put('/users/friends/:user', jwtAuth, users.saveFriends);
     app.post('/games/invite/:fromUser/to/:to', jwtAuth, users.sendUserInvites);
-
+    // app.get('/users/friends/:user', jwtAuth, users.getFriends);
+    app.get('/users/all', jwtAuth, users.getAllUser);
+    
+    
     app.delete('/users/delete/:email', users.deleteUser);
 
     app.post('/api/auth/login', users.login);

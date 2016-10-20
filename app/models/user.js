@@ -20,7 +20,10 @@ var UserSchema = new Schema({
     avatar: String,
     premium: Number, // null or 0 for non-donors, 1 for everyone else (for now)
     donations: [],
-    friends:[],
+    friends:[{
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
+    }],
     hashed_password: String, 
     facebook: {},
     twitter: {},
