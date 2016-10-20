@@ -27,18 +27,13 @@ var AuthService = (function () {
             .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     AuthService.prototype.signIn = function (email, password) {
-        var _this = this;
-        var headers = new http_1.Headers();
-        headers.append('Content-type', 'application/json');
-        return this.http
-            .post('/api/auth/login', JSON.stringify({ email: email, password: password }), { headers: headers })
+        var headers = new http_1.Headers({ 'Content-type': 'application/json' });
+        var options = new http_1.RequestOptions({ headers: headers });
+        var cred = JSON.stringify({ email: email, password: password });
+        return this._http
+            .post('/api/auth/login', cred, options)
             .map(function (res) { return res.json(); })
-            .map(function (res) {
-            if (res.success) {
-                localStorage.setItem('auth_token', res.auth_token);
-                _this.signedIn = true;
-            }
-        });
+            .catch(function (error) { return Rx_1.Observable.throw(error.json().error || 'Server error'); });
     };
     AuthService.prototype.signOut = function () {
         localStorage.removeItem('auth_token');

@@ -30,6 +30,7 @@ export class SignupComponent {
         console.log(result);
         localStorage.setItem('auth_token', 'Bearer ' + result.token);
         localStorage.setItem('user_id', 'Bearer ' + result.userId);
+        this.authCheck.signedIn = true;
         this.router.navigate(['/']);
       }
     })

@@ -24,6 +24,7 @@ var SignupComponent = (function () {
                 console.log(result);
                 localStorage.setItem('auth_token', 'Bearer ' + result.token);
                 localStorage.setItem('user_id', 'Bearer ' + result.userId);
+                _this.authCheck.signedIn = true;
                 _this.router.navigate(['/']);
             }
         });

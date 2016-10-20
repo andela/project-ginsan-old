@@ -18,29 +18,19 @@ export class AuthService {
     let data = JSON.stringify({ name:name, email:email, password:password })
 
     return this._http
-      .post('/api/auth/signup', data ,options
-      ).map(res => res.json())
+      .post('/api/auth/signup', data ,options).map(res => res.json())
       .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   signIn(email, password){
-    let headers = new Headers();
-    headers.append('Content-type', 'application/json');
+    let headers = new Headers({'Content-type': 'application/json'});
+    let options = new RequestOptions({headers:headers});
+    let cred = JSON.stringify({email:email, password:password});
 
-    return this.http
-      .post(
-        '/api/auth/login',
-        JSON.stringify({ email, password }),
-        { headers }
-      )
-
-      .map(res => res.json())
-      .map((res) => {
-        if(res.success) {
-          localStorage.setItem('auth_token', res.auth_token);
-          this.signedIn = true;
-        }
-      })
+    return this._http
+      .post('/api/auth/login',cred, options)
+        .map(res => res.json())
+      .catch((error:any) => Observable.throw(error.json().error || 'Server error'));
   }
 
   signOut() {
