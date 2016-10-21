@@ -1,7 +1,7 @@
 //
 import { NgModule }                from '@angular/core';
 import { FormsModule }   from '@angular/forms';
-import { RouterModule , Routes }   from '@angular/router';
+import { RouterModule , Routes, Router }   from '@angular/router';
 import { HttpModule } from '@angular/http';
 
 //custom imports
@@ -14,6 +14,9 @@ import { GameComponent }           from './game/game.component';
 
 //imports for custom services
 import { AuthService }  from '../app/shared/services/auth/auth.service';
+
+// Guard for routes protections
+import { SignedInGuard } from '../app/shared/services/auth/signedin.guard';
 
 const routes:Routes = [
     {
@@ -42,7 +45,8 @@ const routes:Routes = [
     },
     {
         path: 'dashboard',
-        component: DashboardComponent
+        component: DashboardComponent,
+        canActivate: [SignedInGuard]
     },
     {
         path: 'game',
@@ -61,7 +65,7 @@ const routes:Routes = [
         RouterModule,
     ],
 
-    providers: [AuthService],
+    providers: [AuthService, SignedInGuard],
 
     declarations: [ 
         LandingPage, DashboardComponent, AuthComponent, SigninComponent, SignupComponent

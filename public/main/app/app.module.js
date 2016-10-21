@@ -19,6 +19,8 @@ var app_component_1 = require('./app.component');
 var game_component_1 = require('../routes/game/game.component');
 //imports for custom services
 var auth_service_1 = require('./shared/services/auth/auth.service');
+// Guard for routes protections
+// import { SignedInGuard } from './shared/services/auth/signedin.guard';
 var AppModule = (function () {
     function AppModule() {
     }

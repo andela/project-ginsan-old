@@ -9,11 +9,12 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var auth_service_1 = require('../../../app/shared/services/auth/auth.service');
 var SigninComponent = (function () {
     function SigninComponent(authService, router) {
-        this.router = router;
         this.authCheck = authService;
+        this._router = router;
     }
     SigninComponent.prototype.onSubmit = function (e) {
         var _this = this;
@@ -24,6 +25,7 @@ var SigninComponent = (function () {
                 console.log(result);
                 localStorage.setItem('auth_token', result.token);
                 _this.authCheck.signedIn = true;
+                _this._router.navigate(['/dashboard']);
             }
         });
     };
@@ -35,7 +37,8 @@ var SigninComponent = (function () {
             templateUrl: 'signin.component.html',
             providers: [auth_service_1.AuthService]
         }),
-        __param(0, core_1.Inject(auth_service_1.AuthService))
+        __param(0, core_1.Inject(auth_service_1.AuthService)),
+        __param(1, core_1.Inject(router_1.Router))
     ], SigninComponent);
     return SigninComponent;
 }());

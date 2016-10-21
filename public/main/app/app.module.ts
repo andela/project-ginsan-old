@@ -19,6 +19,9 @@ import { GameComponent }      from '../routes/game/game.component';
 //imports for custom services
 import { AuthService }  from './shared/services/auth/auth.service';
 
+// Guard for routes protections
+// import { SignedInGuard } from './shared/services/auth/signedin.guard';
+
 @NgModule({
     imports: [
         BrowserModule,

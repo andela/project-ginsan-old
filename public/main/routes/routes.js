@@ -19,6 +19,8 @@ var signup_component_1 = require('./auth/signup/signup.component');
 var game_component_1 = require('./game/game.component');
 //imports for custom services
 var auth_service_1 = require('../app/shared/services/auth/auth.service');
+// Guard for routes protections
+var signedin_guard_1 = require('../app/shared/services/auth/signedin.guard');
 var routes = [
     {
         path: 'home',
@@ -45,7 +47,8 @@ var routes = [
     },
     {
         path: 'dashboard',
-        component: dashboard_component_1.DashboardComponent
+        component: dashboard_component_1.DashboardComponent,
+        canActivate: [signedin_guard_1.SignedInGuard]
     },
     {
         path: 'game',
@@ -66,7 +69,7 @@ var MyRouterModule = (function () {
             exports: [
                 router_1.RouterModule,
             ],
-            providers: [auth_service_1.AuthService],
+            providers: [auth_service_1.AuthService, signedin_guard_1.SignedInGuard],
             declarations: [
                 landingpage_1.LandingPage, dashboard_component_1.DashboardComponent, auth_component_1.AuthComponent, signin_component_1.SigninComponent, signup_component_1.SignupComponent
             ]

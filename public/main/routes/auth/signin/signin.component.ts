@@ -15,9 +15,11 @@ export class SigninComponent {
     email: String;
     password: String;
     authCheck;
+    _router;
 
-    constructor(@Inject (AuthService) authService: AuthService, private router:Router){
+    constructor(@Inject (AuthService) authService: AuthService, @Inject (Router)  router:Router){
         this.authCheck = authService;
+        this._router = router;
     }
 
     onSubmit(e) {
@@ -28,6 +30,7 @@ export class SigninComponent {
                 console.log(result)
                 localStorage.setItem('auth_token', result.token);
                 this.authCheck.signedIn = true;
+                this._router.navigate(['/dashboard']);
             }
         })
     }
