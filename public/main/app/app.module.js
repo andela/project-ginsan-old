@@ -18,6 +18,13 @@ var landingpage_1 = require('../routes/home/landingpage');
 var dashboard_component_1 = require('../routes/dashboard/dashboard.component');
 var auth_component_1 = require('../routes/auth/auth.component');
 var game_component_1 = require('../routes/game/game.component');
+var angularfire2_1 = require('angularfire2');
+exports.firebaseConfig = {
+    apiKey: 'AIzaSyBsGcVU62eKOMwKLu_o8KHrwn6Lh3x_4-Q',
+    authDomain: 'cfhchat-c8c32.firebaseapp.com',
+    databaseURL: 'https://cfhchat-c8c32.firebaseio.com',
+    storageBucket: 'cfhchat-c8c32.appspot.com'
+};
 var AppModule = (function () {
     function AppModule() {
     }
@@ -26,7 +33,8 @@ var AppModule = (function () {
             imports: [
                 platform_browser_1.BrowserModule,
                 routes_1.MyRouterModule,
-                index_1.GameModule
+                index_1.GameModule,
+                angularfire2_1.AngularFireModule.initializeApp(exports.firebaseConfig)
             ],
             declarations: [
                 app_component_1.AppComponent,

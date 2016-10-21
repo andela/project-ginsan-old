@@ -1,0 +1,85 @@
+{
+  "_args": [
+    [
+      "wdt-emoji-bundle",
+      "/home/sims01/Documents/angular2/project-ginsan/public"
+    ]
+  ],
+  "_from": "wdt-emoji-bundle@latest",
+  "_id": "wdt-emoji-bundle@0.1.3",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/wdt-emoji-bundle",
+  "_nodeVersion": "5.4.0",
+  "_npmUser": {
+    "email": "nedimarabaci@gmail.com",
+    "name": "needim"
+  },
+  "_npmVersion": "3.3.12",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "wdt-emoji-bundle",
+    "raw": "wdt-emoji-bundle",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/wdt-emoji-bundle/-/wdt-emoji-bundle-0.1.3.tgz",
+  "_shasum": "b75a7e9b463bac34dc1dd43cb143b53be4f7a155",
+  "_shrinkwrap": null,
+  "_spec": "wdt-emoji-bundle",
+  "_where": "/home/sims01/Documents/angular2/project-ginsan/public",
+  "author": {
+    "name": "Nedim Arabacı",
+    "url": "http://github.com/needim/"
+  },
+  "bugs": {
+    "url": "https://github.com/needim/wdt-emoji-bundle/issues"
+  },
+  "dependencies": {},
+  "description": "Slack like emoji selector with apple, twitter, google, emojione and custom emoji support.",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-bump": "^1.0.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-uglify": "^1.5.1"
+  },
+  "directories": {},
+  "dist": {
+    "shasum": "b75a7e9b463bac34dc1dd43cb143b53be4f7a155",
+    "tarball": "https://registry.npmjs.org/wdt-emoji-bundle/-/wdt-emoji-bundle-0.1.3.tgz"
+  },
+  "gitHead": "3783091d22297f7826050754f298015a3c89b0e2",
+  "homepage": "http://ned.im/wdt-emoji-bundle",
+  "keywords": [
+    "emoji",
+    "emoticon",
+    "javascript",
+    "slack",
+    "wdt"
+  ],
+  "license": "MIT",
+  "main": "wdt-emoji-bunle.js",
+  "maintainers": [
+    {
+      "name": "needim",
+      "email": "nedimarabaci@gmail.com"
+    }
+  ],
+  "name": "wdt-emoji-bundle",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/needim/wdt-emoji-bundle.git"
+  },
+  "scripts": {
+    "build": "gulp build"
+  },
+  "title": "wdt-emoji-bundle - Emoji picker",
+  "version": "0.1.3"
+}

@@ -2,8 +2,8 @@
 
     @Component({
       selector: 'game-page',
-      templateUrl: 'main/routes/game/game.tpl.html',
-      styleUrls: ['main/routes/game/game.tpl.css']
+      templateUrl: 'main/routes/game/game.component.html',
+      styleUrls: ['main/routes/game/game.component.css']
     })
     export class GameComponent { 
 
@@ -22,7 +22,7 @@
           roundsWon: 1
         },
         {
-          username: 'Daniel',
+          username: 'Redd',
           avatarImg: 'resources/images/chosen/J01.png',
           role: 'player',
           roundsWon: 1

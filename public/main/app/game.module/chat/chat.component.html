@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="chat-messages" style="overflow-y:scroll; height: 80vh">
+        <div class="col s12" *ngFor="let message of messages | async" style="padding-top:0; padding:right:0;">
+            <div class="row" style="border-left:1px solid #fff;padding-left:.5em">
+                <span style="font-size:0.7em"><b>{{message.user}}</b></span>
+                <hr>
+            <span>{{ message.text }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="chat-text-box">
+        <textarea id="new_message" [(ngModel)]="newMessage" (keyup.enter)="submit()" style="background:#fff; margin-top: 10px"></textarea>
+    </div>
+</div>

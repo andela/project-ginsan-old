@@ -1,4 +1,5 @@
 'use strict';
+require('dotenv').config();
 var gulp = require('gulp');
 var exec = require('child_process').exec;
 var gulpSequence = require('run-sequence');
@@ -81,7 +82,7 @@ gulp.task('on-js-change-backend',function(done){
 //
 gulp.task('on-js-change-frontend',function(done){
  //Recompile typescript
-  exec('tsc public/**/*.ts', function(err, stdout, stderr) {
+  exec('public/node_modules/typescript/bin/tsc public/**/*.ts', function(err, stdout, stderr) {
     console.log(stdout);
     reload();
     done();
